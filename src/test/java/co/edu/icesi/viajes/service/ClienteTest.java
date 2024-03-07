@@ -114,6 +114,15 @@ public class ClienteTest {
         }
     }
 
+    @Test
+    void debeConsultarClientePorNombreDTO() {
+        List<ClienteDTO> lstCliente = ClienteService.consultarClientesPorNombre("Juan");
+
+        for (ClienteDTO Cliente : lstCliente) {
+            System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getNombre() + " " + Cliente.getPrimerApellido() );
+        }
+    }
+
 
 
 }

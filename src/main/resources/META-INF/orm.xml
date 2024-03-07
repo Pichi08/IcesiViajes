@@ -4,6 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
 
     <entity class="co.edu.icesi.viajes.domain.Cliente">
+        <named-native-query name="Cliente.consultarClientesPorNombre" result-set-mapping="Cliente.consultarClientesPorNombre">
+            <query>
+                SELECT numero_identificacion,primer_apellido,segundo_apellido,nombre,estado,id_tiid
+                FROM cliente c
+                WHERE c.nombre LIKE :pNombre
+                ORDER BY nombre ASC
+            </query>
+        </named-native-query>
         <named-native-query name="Cliente.consultarPorTipoID" result-set-mapping="Cliente.consultarPorTipoID">
             <query>
                 Select c.id_clie, c.numero_identificacion, c.nombre AS nombreClie, c.primer_apellido , td.nombre as nombreID
