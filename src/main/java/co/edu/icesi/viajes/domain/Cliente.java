@@ -36,7 +36,7 @@ import java.util.Date;
                         columns = {
                                 @ColumnResult(name = "id_clie", type = Integer.class),
                                 @ColumnResult(name = "numero_identificacion", type = String.class),
-                                @ColumnResult(name = "nombre", type = String.class),
+                                @ColumnResult(name = "nombreClie", type = String.class),
                                 @ColumnResult(name = "primer_apellido", type = String.class),
                                 @ColumnResult(name = "nombreID", type = String.class),
                         })

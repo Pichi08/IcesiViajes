@@ -88,9 +88,10 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public List<Cliente> findByFechaCreacionBetween(Date fechaInicio, Date fechaFin) {
-        return clienteRepository.findByFechaCreacionBetween(fechaInicio, fechaFin);
+    public List<Cliente> findByFechaNacimientoBetween(Date fechaInicio, Date fechaFin) {
+        return clienteRepository.findByFechaNacimientoBetween(fechaInicio, fechaFin);
     }
+
 
     @Override
     public Long countByEstado(String estado) {
@@ -106,5 +107,11 @@ public class ClienteServiceImpl implements ClienteService{
     public Page<ClienteDTO> consultarPorTipoID(String codigo, Pageable pageable) {
         return clienteRepository.consultarPorTipoID(codigo, pageable);
     }
+
+    @Override
+    public List<Cliente> findBySexoOrderByFechaNacimiento(String sexo) {
+        return clienteRepository.findBySexoOrderByFechaNacimiento(sexo);
+    }
+
 
 }

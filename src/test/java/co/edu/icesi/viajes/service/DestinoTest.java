@@ -31,8 +31,7 @@ public class DestinoTest {
         List<DestinoDTO> lstDestino = destinoService.consultaDestinosPorTipoDestin("PLAYA Y MAR");
 
         for (DestinoDTO destino : lstDestino) {
-            System.out.println("Entro");
-            System.out.println(destino.getNombre() + "-" + destino.getEstado());
+            System.out.println(destino.getNombre() + "-" + destino.getDescripcion());
         }
     }
 

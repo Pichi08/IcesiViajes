@@ -8,19 +8,19 @@ import java.util.Date;
 
 @NamedNativeQueries({
         @NamedNativeQuery(
-                name = "Destino.consultaDestinosPorTipoDest",
+                name = "Destino.consultaDestinosPorTipoDestin",
                 query = "",
-                resultSetMapping = "Destino.consultaDestinosPorTipoDest"
+                resultSetMapping = "Destino.consultaDestinosPorTipoDestin"
         )
 })
 @SqlResultSetMappings({
         @SqlResultSetMapping(
-                name = "Destino.consultaDestinosPorTipoDest",
+                name = "Destino.consultaDestinosPorTipoDestin",
                 classes = {
                         @ConstructorResult(
                                 targetClass = DestinoDTO.class,
                                 columns = {
-                                        @ColumnResult(name = "nombreDest", type = String.class),
+                                        @ColumnResult(name = "nombreDestin", type = String.class),
                                         @ColumnResult(name = "descripcion", type = String.class),
                                 }
                         )

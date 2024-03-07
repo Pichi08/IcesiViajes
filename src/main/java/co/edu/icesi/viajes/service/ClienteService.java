@@ -15,9 +15,10 @@ public interface ClienteService extends GenericService<Cliente, Integer>{
     public List<Cliente> findByCorreoIgnoreCase(String correo);
     public List<Cliente> findByNumeroIdentificacionLike(String numeroIdentificacion);
     public List<Cliente> findByNombreLikeIgnoreCase(String nombre);
-    public List<Cliente> findByFechaCreacionBetween(Date fechaInicio, Date fechaFin);
+    public List<Cliente> findByFechaNacimientoBetween(Date fechaInicio, Date fechaFin);
     public Long countByEstado(String estado);
     public List<Cliente> findByPrimerApellidoAndSegundoApellido(String primerApellido, String segundoApellido);
     Page<ClienteDTO> consultarPorTipoID(@Param("pCodigo") String codigo, Pageable pageable);
+    List<Cliente> findBySexoOrderByFechaNacimiento(String sexo);
 
 }

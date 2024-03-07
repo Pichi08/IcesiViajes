@@ -7,13 +7,14 @@ import java.util.Date;
 
 @Data
 public class DestinoDTO implements Serializable {
-    public DestinoDTO(String nombre,String descripcion) {
+    @Serial
+    private static final long serialVersionUID = -2787281453303120829L;
+
+    public DestinoDTO(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
-
-    @Serial
-    private static final long serialVersionUID = 3544865563286917051L;
+    
 
     private Integer idDest;
     private String codigo;

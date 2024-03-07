@@ -12,7 +12,10 @@ import java.util.Date;
 @Data
 public class ClienteDTO implements Serializable {
 
-    public ClienteDTO(String numeroIdentificacion,String primerApellido, String segundoApellido,String nombre,String estado,Integer idTiid) {
+    @Serial
+    private static final long serialVersionUID = 6733906714888102899L;
+
+    public ClienteDTO(String numeroIdentificacion, String primerApellido, String segundoApellido, String nombre, String estado, Integer idTiid) {
         this.numeroIdentificacion = numeroIdentificacion;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -28,10 +31,7 @@ public class ClienteDTO implements Serializable {
         this.primerApellido = primerApellido;
         this.nombreID = nombreID;
     }
-
-    @Serial
-    private static final long serialVersionUID = 8460626525156785057L;
-
+    
     private Integer idClie;
     private String numeroIdentificacion;
     private String primerApellido;

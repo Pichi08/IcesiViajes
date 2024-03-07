@@ -6,7 +6,7 @@
     <entity class="co.edu.icesi.viajes.domain.Cliente">
         <named-native-query name="Cliente.consultarPorTipoID" result-set-mapping="Cliente.consultarPorTipoID">
             <query>
-                Select c.id_clie, c.numero_identificacion, c.nombre, c.primer_apellido , td.nombre as nombreID
+                Select c.id_clie, c.numero_identificacion, c.nombre AS nombreClie, c.primer_apellido , td.nombre as nombreID
                 From cliente c
                 JOIN tipo_identificacion td on c.id_tiid = td.id_tiid
                 Where codigo = :pCodigo

@@ -21,7 +21,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     public List<Cliente> findByNombreLikeIgnoreCase(String nombre);
 
-    public List<Cliente> findByFechaCreacionBetween(Date fechaInicio, Date fechaFin);
+    public List<Cliente> findByFechaNacimientoBetween(Date fechaInicio, Date fechaFin);
 
     public Long countByEstado(String estado);
 
@@ -38,5 +38,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query(nativeQuery = true)
     Page<ClienteDTO> consultarPorTipoID(@Param("pCodigo") String codigo, Pageable pageable);
+
+    List<Cliente> findBySexoOrderByFechaNacimiento(String sexo);
 
 }

@@ -19,29 +19,6 @@ public class ClienteTest {
     private ClienteService ClienteService;
 
     @Test
-    void debeGuardarClientes() throws Exception {
-        Cliente Cliente = new Cliente();
-        Cliente.setIdClie(1);
-        Cliente.setNumeroIdentificacion("123");
-        Cliente.setPrimerApellido("Perez");
-        Cliente.setSegundoApellido("Perez");
-        Cliente.setNombre("Juan");
-        Cliente.setTelefono1("123");
-        Cliente.setTelefono2("123");
-        Cliente.setCorreo("algo@algo.com");
-        Cliente.setSexo("M");
-        Cliente.setFechaNacimiento(new Date());
-        Cliente.setFechaCreacion(new Date());
-        Cliente.setFechaModificacion(new Date());
-        Cliente.setUsuCreador("admin");
-        Cliente.setUsuModificador("admin");
-        Cliente.setEstado("A");
-        Cliente.setIdTiid(1);
-
-//        ClienteService.save(Cliente);
-    }
-
-    @Test
     void debeConsultarClientePorEstado() {
         List<Cliente> lstCliente = ClienteService.findByEstadoOrderByNumeroIdentificacionAsc("A", Pageable.ofSize(1));
 
@@ -53,7 +30,7 @@ public class ClienteTest {
 
     @Test
     void debeConsultarClientePorCorreo() {
-        List<Cliente> lstCliente = ClienteService.findByCorreoIgnoreCase("algo@algo.com");
+        List<Cliente> lstCliente = ClienteService.findByCorreoIgnoreCase("maria@example.com");
 
         for (Cliente Cliente : lstCliente) {
             System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getEstado());
@@ -62,7 +39,7 @@ public class ClienteTest {
 
     @Test
     void debeConsultarClientePorNumeroIdentificacion() {
-        List<Cliente> lstCliente = ClienteService.findByNumeroIdentificacionLike("123");
+        List<Cliente> lstCliente = ClienteService.findByNumeroIdentificacionLike("123456789");
 
         for (Cliente Cliente : lstCliente) {
             System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getEstado());
@@ -89,8 +66,14 @@ public class ClienteTest {
     }
 
     @Test
-    void debeConsultarClientePorFechaCreacion() {
-        List<Cliente> lstCliente = ClienteService.findByFechaCreacionBetween(new Date(), new Date());
+    void debeConsultarClientePorFechaNacimiento() {
+
+        Date newDate = new Date();
+        newDate.setYear(1990);
+        newDate.setMonth(4);
+        newDate.setDate(15);
+        System.out.println(newDate);
+        List<Cliente> lstCliente = ClienteService.findByFechaNacimientoBetween(newDate, new Date());
 
         for (Cliente Cliente : lstCliente) {
             System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getEstado());
@@ -115,12 +98,22 @@ public class ClienteTest {
 
     @Test
     void debeRetornarUnCliente() {
-        Page<ClienteDTO> lstCliente = ClienteService.consultarPorTipoID("CC", Pageable.ofSize(1));
+        Page<ClienteDTO> lstCliente = ClienteService.consultarPorTipoID("CC", Pageable.unpaged());
 
         for (ClienteDTO Cliente : lstCliente) {
-            System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getEstado());
+            System.out.println(Cliente.getNumeroIdentificacion() + "-" + Cliente.getNombre() + " " + Cliente.getPrimerApellido() );
         }
     }
+
+    @Test
+    void debeConsultarClientePorSexo() {
+        List<Cliente> lstCliente = ClienteService.findBySexoOrderByFechaNacimiento("M");
+
+        for (Cliente Cliente : lstCliente) {
+            System.out.println(Cliente.getNombre() + "-" + Cliente.getFechaNacimiento());
+        }
+    }
+
 
 
 }

@@ -10,17 +10,14 @@ import java.util.List;
 
 public interface DestinoRepository extends JpaRepository<Destino, Integer> {
 
-   public List<Destino> findByCodigoAndEstado(String codigo, String estado);
+//   @Query("SELECT d FROM Destino d WHERE d.estado = 'A' AND d.codigo = :codigo")
+//   public List<Destino> findByCodigoAndEstado(String codigo);
+   List<Destino> findByCodigoAndEstado(String codigo, String estado);
 
    @Query(nativeQuery = true)
    public List<DestinoDTO> consultaDestinosPorTipoDestin(@Param("pNombre") String nombre);
 
    @Query("SELECT d FROM Destino d WHERE d.estado = 'A'")
    List<Destino> findDestinoByEstado();
-
-    // Consultar todos los destinos activos, mostrando que tipo de destino es.
-
-
-
 
 }
