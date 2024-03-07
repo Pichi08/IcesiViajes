@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd" version="2.2">
+
+    <entity class="co.edu.icesi.viajes.domain.Cliente">
+        <named-native-query name="Cliente.consultarPorTipoID" result-set-mapping="Cliente.consultarPorTipoID">
+            <query>
+                Select c.id_clie, c.numero_identificacion, c.nombre, c.primer_apellido , td.nombre as nombreID
+                From cliente c
+                JOIN tipo_identificacion td on c.id_tiid = td.id_tiid
+                Where codigo = :pCodigo
+            </query>
+        </named-native-query>
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.Destino">
+        <named-native-query name="Destino.consultaDestinosPorTipoDestin" result-set-mapping="Destino.consultaDestinosPorTipoDestin">
+            <query>
+                SELECT d.nombre AS nombreDestin,
+                d.descripcion
+                FROM tipo_destino td
+                JOIN destino d
+                ON td.id_tide = d.id_tide
+                WHERE td.nombre= :pNombre
+            </query>
+        </named-native-query>
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.DetallePlan">
+
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.Plan">
+
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.TipoDestino">
+
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.TipoIdentificacion">
+
+    </entity>
+
+    <entity class="co.edu.icesi.viajes.domain.Usuario">
+
+    </entity>
+
+</entity-mappings>
