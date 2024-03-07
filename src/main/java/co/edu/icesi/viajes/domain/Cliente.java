@@ -42,6 +42,20 @@ import java.util.Date;
                         })
 
                 }
+        ),
+        @SqlResultSetMapping(
+                name = "Cliente.consultarPlanYDetallePlan",
+                classes = { @ConstructorResult(targetClass = ClienteDTO.class,
+                        columns = {
+                                @ColumnResult(name = "cliente_nombre", type = String.class),
+                                @ColumnResult(name = "alimentacion", type = String.class),
+                                @ColumnResult(name = "hospedaje", type = String.class),
+                                @ColumnResult(name = "transporte", type = String.class),
+                                @ColumnResult(name = "plan_codigo", type = String.class),
+                                @ColumnResult(name = "plan_descripcion", type = String.class),
+                        })
+
+                }
         )
 
 })

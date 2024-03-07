@@ -20,5 +20,6 @@ public interface ClienteService extends GenericService<Cliente, Integer>{
     public List<Cliente> findByPrimerApellidoAndSegundoApellido(String primerApellido, String segundoApellido);
     Page<ClienteDTO> consultarPorTipoID(@Param("pCodigo") String codigo, Pageable pageable);
     List<Cliente> findBySexoOrderByFechaNacimiento(String sexo);
+    List<ClienteDTO> consultarPlanYDetallePlan(@Param("pNombre") String nombre);
 
 }

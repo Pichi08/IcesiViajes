@@ -123,6 +123,14 @@ public class ClienteTest {
         }
     }
 
+    @Test
+    void debeConsultarPlanYDetallePlan() {
+        List<ClienteDTO> lstCliente = ClienteService.consultarPlanYDetallePlan("Juan");
+
+        for (ClienteDTO Cliente : lstCliente) {
+            System.out.println(Cliente.getCliente_nombre() + "-" + Cliente.getPlan_codigo() + "-" + Cliente.getPlan_descripcion());
+        }
+    }
 
 
 }

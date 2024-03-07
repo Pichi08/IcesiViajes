@@ -113,5 +113,10 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteRepository.findBySexoOrderByFechaNacimiento(sexo);
     }
 
+    @Override
+    public List<ClienteDTO> consultarPlanYDetallePlan(String nombre) {
+        return clienteRepository.consultarPlanYDetallePlan(nombre);
+    }
+
 
 }

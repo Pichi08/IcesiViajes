@@ -41,4 +41,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     List<Cliente> findBySexoOrderByFechaNacimiento(String sexo);
 
+    @Query(nativeQuery = true)
+    List<ClienteDTO> consultarPlanYDetallePlan(@Param("pNombre") String nombre);
+
 }

@@ -20,6 +20,16 @@
                 Where codigo = :pCodigo
             </query>
         </named-native-query>
+        <named-native-query name="Cliente.consultarPlanYDetallePlan" result-set-mapping="Cliente.consultarPlanYDetallePlan">
+            <query>
+                SELECT c.nombre AS cliente_nombre, dp.alimentacion, dp.hospedaje, dp.transporte, p.codigo AS plan_codigo, p.descripcion_solicitud AS plan_descripcion
+                FROM cliente c
+                JOIN plan p ON c.id_clie = p.id_clie
+                JOIN detalle_plan dp ON p.id_plan = dp.id_plan
+                WHERE c.nombre = :pNombre
+                ORDER BY c.nombre, p.fecha_solicitud DESC
+            </query>
+        </named-native-query>
     </entity>
 
     <entity class="co.edu.icesi.viajes.domain.Destino">
