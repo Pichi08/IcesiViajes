@@ -4,6 +4,8 @@ package co.edu.icesi.viajes.service;
 import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.dto.DestinoDTO;
 import co.edu.icesi.viajes.repository.DestinoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;

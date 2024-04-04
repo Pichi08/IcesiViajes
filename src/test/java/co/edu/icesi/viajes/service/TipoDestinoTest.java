@@ -2,6 +2,8 @@ package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.TipoDestino;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -15,21 +17,22 @@ public class TipoDestinoTest {
     @Autowired
     private TipoDestinoService tipoDestinoService;
 
+    private final Logger log = LoggerFactory.getLogger(TipoDestinoTest.class);
+
     @Test
     void debeRetornarListaDeTiposDestino() {
         List<TipoDestino> lstTipoDestino = tipoDestinoService.findAll();
-
-        System.out.println("\n\nLista de tipos destino");
         for(TipoDestino tipoDestino : lstTipoDestino) {
-            System.out.println(tipoDestino.getCodigo() + "-" + tipoDestino.getEstado());
+            log.info("Tipo destino: " + tipoDestino.getNombre());
         }
     }
 
     @Test
     void debeRetornarTipoDestinoPorId() {
         Optional<TipoDestino> tipoDestino = tipoDestinoService.findById(2);
-        System.out.println("\n\nTipo destino por id 2");
-        System.out.println(tipoDestino.get().getNombre());
+        log.info("Tipo destino por id 2: " + tipoDestino.get().getNombre());
+//        System.out.println("\n\nTipo destino por id 2");
+//        System.out.println(tipoDestino.get().getNombre());
     }
 
     @Test
@@ -52,7 +55,7 @@ public class TipoDestinoTest {
 
         try {
             tipoDestinoService.save(tipoDestino);
-            System.out.println("\n\nTipo destino guardado");
+            log.info("Tipo destino guardado");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,12 +75,10 @@ public class TipoDestinoTest {
 
         try {
             tipoDestinoService.update(updateDestino.get());
-            System.out.println("\n\nTipo destino actualizado");
+            log.info("Tipo destino actualizado");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 
@@ -89,7 +90,7 @@ public class TipoDestinoTest {
 
         try{
             tipoDestinoService.delete(tipoDestino.get());
-            System.out.println("\n\nTipo destino eliminado");
+            log.info("Tipo destino eliminado");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -121,7 +122,7 @@ public class TipoDestinoTest {
 
         try{
             tipoDestinoService.deleteById(lstTipoDestino.get(lstTipoDestino.size() - 1).getIdTide());
-            System.out.println("\n\nTipo destino eliminado por id");
+            log.info("Tipo destino eliminado por id");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -130,7 +131,7 @@ public class TipoDestinoTest {
     @Test
     void debeContarTiposDestino() {
         Long count = tipoDestinoService.count();
-        System.out.println("\n\nCantidad de tipos destino: " + count);
+        log.info("Cantidad de tipos de destino: " + count);
     }
 
     @Test
@@ -138,7 +139,7 @@ public class TipoDestinoTest {
         List<TipoDestino> lstTipoDestino = tipoDestinoService.findByCodigo("PLAYA");
 
         for(TipoDestino tipoDestino : lstTipoDestino) {
-            System.out.println(tipoDestino.getNombre());
+            log.info("Tipo destino por código: " + tipoDestino.getNombre());
         }
     }
 
@@ -147,7 +148,7 @@ public class TipoDestinoTest {
         List<TipoDestino> lstTipoDestino = tipoDestinoService.findByCodigoAndEstado("PLAYA", "A");
 
         for(TipoDestino tipoDestino : lstTipoDestino) {
-            System.out.println(tipoDestino.getNombre());
+            log.info("Tipo destino por código y estado: " + tipoDestino.getNombre());
         }
     }
 
@@ -156,7 +157,7 @@ public class TipoDestinoTest {
         List<TipoDestino> lstTipoDestino = tipoDestinoService.findByOrderByNombreAsc();
 
         for(TipoDestino tipoDestino : lstTipoDestino) {
-            System.out.println(tipoDestino.getNombre());
+            log.info("Tipo destino ordenado por nombre: " + tipoDestino.getNombre());
         }
     }
 

@@ -3,6 +3,8 @@ package co.edu.icesi.viajes.service;
 import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import co.edu.icesi.viajes.repository.ClienteRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,7 @@ public class ClienteServiceImpl implements ClienteService{
     @Autowired
     private ClienteRepository clienteRepository;
 
+    private final static Logger log = LoggerFactory.getLogger(ClienteServiceImpl.class);
 
     @Override
     public List<Cliente> findAll() {
