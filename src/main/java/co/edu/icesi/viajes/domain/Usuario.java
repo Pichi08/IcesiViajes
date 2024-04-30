@@ -40,4 +40,7 @@ public class Usuario {
 
     @Column(name = "estado")
     private String estado;
+
+    @Column(name = "id_rol")
+    private Integer id_rol;
 }
