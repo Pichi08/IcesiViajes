@@ -11,12 +11,12 @@ import java.util.List;
 public interface ClienteMapper {
 
     //Crea los mappings para convertir de Cliente a ClienteDTO y viceversa
-    @Mapping(source = "tiipoDocumento.idTiid", target = "idTiid")
-    ClienteDTO clienteToClienteDTO(Cliente cliente);
-
-    @Mapping(source = "idTiid", target = "tiipoDocumento.idTiid")
-    Cliente clienteDTOToCliente(ClienteDTO clienteDTO);
-    List<ClienteDTO> clientesToClienteDTOs(List<Cliente> clientes);
-    List<Cliente> clienteDTOsToClientes(List<ClienteDTO> clienteDTOs);
+//    @Mapping(source = "tiipoDocumento.idTiid", target = "idTiid")
+//    ClienteDTO clienteToClienteDTO(Cliente cliente);
+//
+//    @Mapping(source = "idTiid", target = "tiipoDocumento.idTiid")
+//    Cliente clienteDTOToCliente(ClienteDTO clienteDTO);
+//    List<ClienteDTO> clientesToClienteDTOs(List<Cliente> clientes);
+//    List<Cliente> clienteDTOsToClientes(List<ClienteDTO> clienteDTOs);
 
 }
