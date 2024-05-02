@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>co.edu.icesi.viajes</groupId>
-    <artifactId>icesi-viajes</artifactId>
+    <artifactId>back_end</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>icesi-viajes</name>
     <description>icesi-viajes</description>
