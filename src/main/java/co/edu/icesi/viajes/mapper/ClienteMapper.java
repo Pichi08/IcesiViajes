@@ -1,5 +1,5 @@
 package co.edu.icesi.viajes.mapper;
-
+/*
 import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import org.mapstruct.Mapper;
@@ -20,3 +20,5 @@ public interface ClienteMapper {
 //    List<Cliente> clienteDTOsToClientes(List<ClienteDTO> clienteDTOs);
 
 }
+
+ */

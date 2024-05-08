@@ -1,5 +1,5 @@
 package co.edu.icesi.viajes.controller;
-
+/*
 import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.service.TipoDestinoService;
 
@@ -26,3 +26,5 @@ public class TipoDestinoRestController {
     }
 
 }
+
+ */

@@ -62,7 +62,15 @@
     </entity>
 
     <entity class="co.edu.icesi.viajes.domain.Usuario">
-
+        <named-native-query name="Usuario.consultarNombreRolPorId" result-set-mapping="Usuario.consultarNombreRolPorId">
+            <query>
+                SELECT r.nombre FROM usuario us
+                JOIN rol r
+                ON us.id_rol=r.id_rol
+                WHERE r.id_rol = :pIdRol
+                LIMIT 1
+            </query>
+        </named-native-query>
     </entity>
 
 </entity-mappings>

@@ -1,6 +1,5 @@
 package co.edu.icesi.viajes.dto;
 
-
 import ch.qos.logback.core.net.server.Client;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
@@ -66,3 +65,4 @@ public class ClienteDTO implements Serializable {
     private String plan_codigo;
     private String plan_descripcion;
 }
+
