@@ -64,7 +64,9 @@ import java.util.Date;
 @Entity
 @Table(name = "cliente")
 public class Cliente {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_clie")
     private Integer idClie;
     @Column(name = "numero_identificacion")

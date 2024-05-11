@@ -55,4 +55,9 @@ public class PlanServiceImpl implements PlanService{
     public Long count() {
         return planRepository.count();
     }
+
+    @Override
+    public List<String> findAllPlanNamesAndDescription() {
+        return planRepository.findAllPlanNamesAndDescription();
+    }
 }

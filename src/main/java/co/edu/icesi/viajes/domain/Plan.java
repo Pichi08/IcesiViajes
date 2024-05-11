@@ -1,8 +1,5 @@
 package co.edu.icesi.viajes.domain;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -10,7 +7,9 @@ import java.util.Date;
 @Entity
 @Table(name="plan")
 public class Plan {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_plan")
     private Integer idPlan;
 

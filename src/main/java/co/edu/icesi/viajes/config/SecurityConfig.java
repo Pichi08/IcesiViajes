@@ -40,8 +40,9 @@ public class SecurityConfig {
                     //Enpoint Publico
                     request.requestMatchers("/auth/**").permitAll();
                     //Endpoint Privado
-                    request.requestMatchers("/admin").hasAnyAuthority("ADMIN");
-                    request.requestMatchers("/asesor").hasAnyAuthority("ASESOR");
+                    request.requestMatchers("/admin/**").hasAnyAuthority("ADMIN");
+                    request.requestMatchers("/asesor/**").hasAnyAuthority("ASESOR");
+                    //request.requestMatchers("/cliente/crear").hasAnyAuthority("ASESOR","ADMIN");
                     request.anyRequest().authenticated();
                 })
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
