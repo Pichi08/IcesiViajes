@@ -55,4 +55,9 @@ public class DetallePlanServiceImpl implements DetallePlanService{
     public Long count() {
         return detallePlanRepository.count();
     }
+
+    @Override
+    public DetallePlan findByPlanId(Integer idPlan) {
+        return detallePlanRepository.findByPlanId(idPlan);
+    }
 }

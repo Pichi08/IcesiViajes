@@ -1,6 +1,5 @@
 package co.edu.icesi.viajes.controller;
 
-import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +38,30 @@ public class UsuarioController {
         return "Se guardo el usuario";
     }
 
+    @PostMapping("/actualizar")
+    public String actualizar(@RequestBody Usuario usuario ) throws Exception {
+        usuarioService.update(usuario);
+        return "Se actualizo el usuario";
+    }
+
+    @PostMapping("/borrar")
+    public String borrar(@RequestBody Usuario usuario ) throws Exception {
+        usuarioService.delete(usuario);
+        return "Se elimino el usuario";
+    }
+
+    @PostMapping("/borrarporid")
+    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+        usuarioService.deleteById(id);
+        return "Se elimino el usuario";
+    }
+
     @GetMapping("/consultar")
     public List<Usuario> consultarUsuarios() {
         return usuarioService.findAll();
     }
 
-    @GetMapping("/consultarId")
+    @GetMapping("/consultarid")
     public Optional<Usuario> buscarIdUsuarios(@RequestBody Integer id) {
         return usuarioService.findById(id);
     }

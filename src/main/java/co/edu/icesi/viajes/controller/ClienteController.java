@@ -24,12 +24,30 @@ public class ClienteController {
         return "Se guardo el cliente";
     }
 
-    @GetMapping("/buscar")
+    @PostMapping("/actualizar")
+    public String actualizar(@RequestBody Cliente cliente ) throws Exception {
+        clienteService.update(cliente);
+        return "Se actualizo el cliente";
+    }
+
+    @PostMapping("/borrar")
+    public String borrar(@RequestBody Cliente cliente ) throws Exception {
+        clienteService.delete(cliente);
+        return "Se elimino el cliente";
+    }
+
+    @PostMapping("/borrarporid")
+    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+        clienteService.deleteById(id);
+        return "Se elimino el cliente";
+    }
+
+    @GetMapping("/consultar")
     public List<Cliente> buscarClientes() {
         return clienteService.findAll();
     }
 
-    @GetMapping("/consultarId")
+    @GetMapping("/consultarid")
     public Optional<Cliente> buscarIdClientes(@RequestBody Integer id) {
         return clienteService.findById(id);
     }
