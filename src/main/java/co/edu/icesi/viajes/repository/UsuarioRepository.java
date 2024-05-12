@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
+
     Optional<Usuario> findByLogin(String username);
     boolean existsUsuarioByLogin(String username);
 

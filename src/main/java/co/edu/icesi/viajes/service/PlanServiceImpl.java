@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,5 +60,10 @@ public class PlanServiceImpl implements PlanService{
     @Override
     public List<String> findAllPlanNamesAndDescription() {
         return planRepository.findAllPlanNamesAndDescription();
+    }
+
+    @Override
+    public List<Plan> findByFechaInicioViajeOrFechaFinViaje(Date fechaInicio, Date fechaFin) {
+        return planRepository.findByFechaInicioViajeOrFechaFinViaje(fechaInicio, fechaFin);
     }
 }
