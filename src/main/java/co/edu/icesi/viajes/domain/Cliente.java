@@ -1,6 +1,7 @@
 package co.edu.icesi.viajes.domain;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.Date;
@@ -76,6 +77,7 @@ public class Cliente {
     @Column(name = "segundo_apellido")
     private String segundoApellido;
     @Column(name = "nombre")
+    @NotBlank(message = "Name is mandatory")
     private String nombre;
     @Column(name = "telefono1")
     private String telefono1;

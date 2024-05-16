@@ -44,15 +44,6 @@ public class Destino {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "tierra")
-    private String tierra;
-
-    @Column(name = "aire")
-    private String aire;
-
-    @Column(name = "mar")
-    private String mar;
-
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
 

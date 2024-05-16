@@ -52,9 +52,6 @@ public class Plan {
     @Column(name = "estado")
     private String estado;
 
-    @Column(name = "id_clie")
-    private Integer idClie;
-
     @Column(name = "id_usua")
     private Integer idUsua;
 }

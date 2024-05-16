@@ -27,9 +27,6 @@ public class DetallePlan {
     @Column(name = "traslados")
     private String traslados;
 
-    @Column(name = "valor")
-    private Double valor;
-
     @Column(name = "cantidad_noches")
     private Integer cantidadNoches;
 

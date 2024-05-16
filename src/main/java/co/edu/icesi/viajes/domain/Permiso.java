@@ -1,10 +1,33 @@
 package co.edu.icesi.viajes.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import co.edu.icesi.viajes.dto.DestinoDTO;
+import co.edu.icesi.viajes.dto.PermisoDTO;
+import jakarta.persistence.*;
 import lombok.Data;
+
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Permiso.consultaPermisoPorRol",
+                query = "",
+                resultSetMapping = "Permiso.consultaPermisoPorRol"
+        )
+})
+@SqlResultSetMappings({
+        @SqlResultSetMapping(
+                name = "Permiso.consultaPermisoPorRol",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PermisoDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre", type = String.class),
+                                }
+                        )
+                }
+        )
+})
+
+
+
 
 @Data
 @Entity
