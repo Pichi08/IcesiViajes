@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.service.DestinoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class DestinoController {
     }
 
     @GetMapping("/consultarid")
-    public Optional<Destino> buscarIdDetallePlan(@RequestBody Integer id) {
+    public Optional<Destino> buscarIdDetallePlan(@Valid @RequestBody Integer id) {
         return destinoService.findById(id);
     }
 

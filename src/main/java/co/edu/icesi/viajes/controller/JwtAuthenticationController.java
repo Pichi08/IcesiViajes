@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.dto.ReqRes;
 import co.edu.icesi.viajes.service.AuthenticationService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +16,12 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/auth/register")
-    public ResponseEntity<ReqRes> register(@RequestBody ReqRes reg){
+    public ResponseEntity<ReqRes> register(@Valid@RequestBody ReqRes reg){
         return ResponseEntity.ok(authenticationService.register(reg));
     }
 
     @PostMapping("/auth/login")
-    public ResponseEntity<ReqRes> login(@RequestBody ReqRes req){
+    public ResponseEntity<ReqRes> login(@Valid @RequestBody ReqRes req){
         //System.out.println(req);
         return ResponseEntity.ok(authenticationService.login(req));
     }

@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,25 +34,25 @@ public class UsuarioController {
     }
 
     @PostMapping("/crear")
-    public String crear(@RequestBody Usuario usuario ) throws Exception {
+    public String crear(@Valid@RequestBody Usuario usuario ) throws Exception {
         usuarioService.save(usuario);
         return "Se guardo el usuario";
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@RequestBody Usuario usuario ) throws Exception {
+    public String actualizar(@Valid@RequestBody Usuario usuario ) throws Exception {
         usuarioService.update(usuario);
         return "Se actualizo el usuario";
     }
 
     @PostMapping("/borrar")
-    public String borrar(@RequestBody Usuario usuario ) throws Exception {
+    public String borrar(@Valid@RequestBody Usuario usuario ) throws Exception {
         usuarioService.delete(usuario);
         return "Se elimino el usuario";
     }
 
     @PostMapping("/borrarporid")
-    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+    public String borrarPorId(@Valid@RequestBody Integer id ) throws Exception {
         usuarioService.deleteById(id);
         return "Se elimino el usuario";
     }
@@ -62,7 +63,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultarid")
-    public Optional<Usuario> buscarIdUsuarios(@RequestBody Integer id) {
+    public Optional<Usuario> buscarIdUsuarios(@Valid @RequestBody Integer id) {
         return usuarioService.findById(id);
     }
 

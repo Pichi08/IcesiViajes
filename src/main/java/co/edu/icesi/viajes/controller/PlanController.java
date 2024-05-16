@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.service.PlanService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,25 +18,25 @@ public class PlanController {
     private PlanService planService;
 
     @PostMapping("/crear")
-    public String crear(@RequestBody Plan plan ) throws Exception {
+    public String crear(@Valid@RequestBody Plan plan ) throws Exception {
         planService.save(plan);
         return "Se guardo el plan";
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@RequestBody Plan plan ) throws Exception {
+    public String actualizar(@Valid@RequestBody Plan plan ) throws Exception {
         planService.update(plan);
         return "Se actualizo el plan";
     }
 
     @PostMapping("/borrar")
-    public String borrar(@RequestBody Plan plan ) throws Exception {
+    public String borrar(@Valid@RequestBody Plan plan ) throws Exception {
         planService.delete(plan);
         return "Se elimino el plan";
     }
 
     @PostMapping("/borrarporid")
-    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+    public String borrarPorId(@Valid@RequestBody Integer id ) throws Exception {
         planService.deleteById(id);
         return "Se elimino el plan";
     }
@@ -46,7 +47,7 @@ public class PlanController {
     }
 
     @GetMapping("/consultarid")
-    public Optional<Plan> consultarId(@RequestBody Integer id) {
+    public Optional<Plan> consultarId(@Valid@RequestBody Integer id) {
         return planService.findById(id);
     }
 
@@ -56,7 +57,7 @@ public class PlanController {
     }
 
     @GetMapping("/consultarfechas")
-    public List<Plan> consultarFechasPlan(@RequestBody Date fechaInicio, Date fechaFin) {
+    public List<Plan> consultarFechasPlan(@Valid @RequestBody Date fechaInicio, Date fechaFin) {
         return planService.findByFechaInicioViajeOrFechaFinViaje(fechaInicio, fechaFin);
     }
 

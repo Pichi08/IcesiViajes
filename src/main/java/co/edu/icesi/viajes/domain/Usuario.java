@@ -8,7 +8,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -20,35 +21,41 @@ public class Usuario implements UserDetails {
     private Integer idUsua;
 
     @Column(name = "login")
+    @NotBlank(message = "El login es obligatorio")
     private String login;
 
     @Column(name = "password")
+    @NotBlank(message = "La contraseña es obligatoria")
     private String password;
 
     @Column(name = "nombre")
+    @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
 
     @Column(name = "identificacion")
     private String identificacion;
 
     @Column(name = "fecha_creacion")
+    @NotNull(message = "La fecha de creación es obligatoria")
     private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
     @Column(name = "usu_creador")
+    @NotBlank(message = "El usuario creador es obligatorio")
     private String usuCreador;
 
     @Column(name = "usu_modificador")
     private String usuModificador;
 
     @Column(name = "estado")
+    @NotBlank(message = "El estado es obligatorio")
     private String estado;
 
     @Column(name = "id_rol")
+    @NotNull(message = "El ID del rol es obligatorio")
     private Integer id_rol;
-
 
 
     /*

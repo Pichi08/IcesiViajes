@@ -5,6 +5,7 @@ import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.dto.PermisoDTO;
 import co.edu.icesi.viajes.service.PermisoService;
 import co.edu.icesi.viajes.service.PlanService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class PermisoController {
 
 
     @GetMapping("/consultarNombre")
-    public List<PermisoDTO> buscarDetallePlan(@RequestBody String nombre) {
+    public List<PermisoDTO> buscarDetallePlan(@Valid @RequestBody String nombre) {
         return permisoService.consultaPermisoPorRol(nombre);
     }
 
