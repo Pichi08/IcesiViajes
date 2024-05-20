@@ -45,6 +45,17 @@
         </named-native-query>
     </entity>
 
+    <entity class="co.edu.icesi.viajes.domain.Permiso">
+        <named-native-query name="Permiso.consultaPermisoPorRol" result-set-mapping="Permiso.consultaPermisoPorRol">
+            <query>
+                SELECT p.nombre
+                FROM permiso p
+                JOIN rol r ON p.id_rol = r.id_rol
+                WHERE r.nombre = :pNombre
+            </query>
+        </named-native-query>
+    </entity>
+
     <entity class="co.edu.icesi.viajes.domain.DetallePlan">
 
     </entity>

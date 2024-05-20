@@ -1,6 +1,9 @@
 package co.edu.icesi.viajes.domain;
 import co.edu.icesi.viajes.dto.ClienteDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Date;
@@ -65,39 +68,65 @@ import java.util.Date;
 @Table(name = "cliente")
 public class Cliente {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_clie")
     private Integer idClie;
+
     @Column(name = "numero_identificacion")
+    @NotBlank(message = "Numero de identificación es obligatorio")
     private String numeroIdentificacion;
+
     @Column(name = "primer_apellido")
+    @NotBlank(message = "Primer apellido es obligatorio")
     private String primerApellido;
+
     @Column(name = "segundo_apellido")
     private String segundoApellido;
+
     @Column(name = "nombre")
+    @NotBlank(message = "Nombre es obligatorio")
     private String nombre;
+
     @Column(name = "telefono1")
     private String telefono1;
+
     @Column(name = "telefono2")
     private String telefono2;
+
     @Column(name = "correo")
+    @Email(message = "Correo debe ser un correo electrónico válido")
     private String correo;
+
     @Column(name = "sexo")
+    @NotNull(message = "Sexo es obligatorio")
     private String sexo;
+
     @Column(name = "fecha_nacimiento")
+    @NotNull(message = "Fecha de nacimiento es obligatoria")
     private Date fechaNacimiento;
+
     @Column(name = "fecha_creacion")
+    @NotNull(message = "Fecha de creación es obligatoria")
     private Date fechaCreacion;
+
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
+
     @Column(name = "usu_creador")
+    @NotBlank(message = "Usuario creador es obligatorio")
     private String usuCreador;
+
     @Column(name = "usu_modificador")
     private String usuModificador;
+
     @Column(name = "estado")
+    @NotNull(message = "Estado es obligatorio")
     private String estado;
+
     @Column(name = "id_tiid")
+    @NotNull(message = "ID de tipo de identificación es obligatorio")
     private Integer idTiid;
 
 

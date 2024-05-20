@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,25 +35,25 @@ public class UsuarioController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<?> crear(@RequestBody Usuario usuario) throws Exception {
+    public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario) throws Exception {
         Usuario usuario1 = usuarioService.save(usuario);
         return ResponseEntity.ok(usuario1);
     }
 
     @PostMapping("/actualizar")
-    public ResponseEntity<?> actualizar(@RequestBody Usuario usuario) throws Exception {
+    public ResponseEntity<?> actualizar(@Valid @RequestBody Usuario usuario) throws Exception {
         Usuario usuario1 = usuarioService.update(usuario);
         return ResponseEntity.ok(usuario1);
     }
 
     @PostMapping("/borrar")
-    public String borrar(@RequestBody Usuario usuario ) throws Exception {
+    public String borrar(@Valid @RequestBody Usuario usuario ) throws Exception {
         usuarioService.delete(usuario);
         return "Se elimino el usuario";
     }
 
     @PostMapping("/borrarporid")
-    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+    public String borrarPorId(@Valid @RequestBody Integer id) throws Exception {
         usuarioService.deleteById(id);
         return "Se elimino el usuario";
     }
@@ -64,7 +65,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdUsuarios(@RequestBody Integer id) {
+    public ResponseEntity<?> buscarIdUsuarios(@Valid @RequestBody Integer id) {
         Optional<Usuario> usuario = usuarioService.findById(id);
         return ResponseEntity.ok(usuario);
     }

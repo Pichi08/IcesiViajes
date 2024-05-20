@@ -1,6 +1,10 @@
 package co.edu.icesi.viajes.service;
 
 
+
+import co.edu.icesi.viajes.dto.PermisoDTO;
+import co.edu.icesi.viajes.repository.PermisoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,10 @@ import java.util.Optional;
 @Scope("singleton")
 @Service
 public class PermisoImpl implements PermisoService {
+
+    @Autowired
+    private PermisoRepository permisoRepository;
+
     @Override
     public List<PermisoService> findAll() {
         return null;
@@ -48,5 +56,11 @@ public class PermisoImpl implements PermisoService {
     @Override
     public Long count() {
         return null;
+    }
+
+
+    @Override
+    public List<PermisoDTO> consultaPermisoPorRol(String nombre) {
+        return permisoRepository.consultaPermisoPorRol(nombre);
     }
 }

@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.TipoIdentificacion;
 import co.edu.icesi.viajes.service.TipoIdentificacionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class TipoIdentificacionController {
     }
 
     @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdTipoIde(@RequestBody Integer id) {
+    public ResponseEntity<?> buscarIdTipoIde(@Valid @RequestBody Integer id) {
         Optional<TipoIdentificacion> tipoIdentificacion = tipoIdentificacionService.findById(id);
         return ResponseEntity.ok(tipoIdentificacion);
     }
