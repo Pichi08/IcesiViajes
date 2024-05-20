@@ -1,9 +1,9 @@
 package co.edu.icesi.viajes.controller;
 
-import co.edu.icesi.viajes.domain.Cliente;
 import co.edu.icesi.viajes.domain.DetallePlan;
 import co.edu.icesi.viajes.service.DetallePlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,42 +17,45 @@ public class DetallePlanController {
     private DetallePlanService detallePlanService;
 
     @PostMapping("/crear")
-    public String crear(@RequestBody DetallePlan detallePlan ) throws Exception {
-        detallePlanService.save(detallePlan);
-        return "Se guardo el detalle del plan";
+    public ResponseEntity<?> crear(@RequestBody DetallePlan detallePlan) throws Exception {
+        DetallePlan detallePlan1 = detallePlanService.save(detallePlan);
+        return ResponseEntity.ok(detallePlan1);
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@RequestBody DetallePlan detallePlan ) throws Exception {
-        detallePlanService.update(detallePlan);
-        return "Se actualizo el detalle del plan";
+    public ResponseEntity<?> actualizar(@RequestBody DetallePlan detallePlan) throws Exception {
+        DetallePlan detallePlan1 = detallePlanService.update(detallePlan);
+        return ResponseEntity.ok(detallePlan1);
     }
 
     @PostMapping("/borrar")
-    public String borrar(@RequestBody DetallePlan detallePlan ) throws Exception {
+    public String borrar(@RequestBody DetallePlan detallePlan) throws Exception {
         detallePlanService.delete(detallePlan);
         return "Se elimino el detalle del plan";
     }
 
     @PostMapping("/borrarporid")
-    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+    public String borrarPorId(@RequestBody Integer id) throws Exception {
         detallePlanService.deleteById(id);
         return "Se elimino el detalle del plan";
     }
 
     @GetMapping("/consultar")
-    public List<DetallePlan> buscarDetallePlan() {
-        return detallePlanService.findAll();
+    public ResponseEntity<?> buscarDetallePlan() {
+        List<DetallePlan> lstDetallePlan = detallePlanService.findAll();
+        return ResponseEntity.ok(lstDetallePlan);
     }
 
     @GetMapping("/consultarid")
-    public Optional<DetallePlan> buscarIdDetallePlan(@RequestBody Integer id) {
-        return detallePlanService.findById(id);
+    public ResponseEntity<?> buscarIdDetallePlan(@RequestBody Integer id) {
+        Optional<DetallePlan> detallePlan = detallePlanService.findById(id);
+        return ResponseEntity.ok(detallePlan);
     }
 
     @GetMapping("/consultarporidplan")
-    public DetallePlan buscarDetallePlanPorIdPlan(@RequestBody Integer id) {
-        return detallePlanService.findByPlanId(id);
+    public ResponseEntity<?> buscarDetallePlanPorIdPlan(@RequestBody Integer id) {
+        DetallePlan detallePlan = detallePlanService.findByPlanId(id);
+        return ResponseEntity.ok(detallePlan);
     }
 
 

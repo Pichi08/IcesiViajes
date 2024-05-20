@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.controller;
 import co.edu.icesi.viajes.domain.Destino;
 import co.edu.icesi.viajes.service.DestinoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,15 @@ public class DestinoController {
     private DestinoService destinoService;
 
     @GetMapping("/consultar")
-    public List<Destino> buscarDetallePlan() {
-        return destinoService.findAll();
+    public ResponseEntity<?> buscarDestino() {
+        List<Destino> lstDestino = destinoService.findAll();
+        return ResponseEntity.ok(lstDestino);
     }
 
     @GetMapping("/consultarid")
-    public Optional<Destino> buscarIdDetallePlan(@RequestBody Integer id) {
-        return destinoService.findById(id);
+    public ResponseEntity<?> buscarIdDestino(@RequestBody Integer id) {
+        Optional<Destino> destino = destinoService.findById(id);
+        return ResponseEntity.ok(destino);
     }
 
 }

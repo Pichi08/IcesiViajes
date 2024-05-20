@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.controller;
 import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -17,47 +18,51 @@ public class PlanController {
     private PlanService planService;
 
     @PostMapping("/crear")
-    public String crear(@RequestBody Plan plan ) throws Exception {
-        planService.save(plan);
-        return "Se guardo el plan";
+    public ResponseEntity<?> crear(@RequestBody Plan plan) throws Exception {
+        Plan plan1 = planService.save(plan);
+        return ResponseEntity.ok(plan1);
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@RequestBody Plan plan ) throws Exception {
-        planService.update(plan);
-        return "Se actualizo el plan";
+    public ResponseEntity<?> actualizar(@RequestBody Plan plan) throws Exception {
+        Plan plan1 = planService.update(plan);
+        return ResponseEntity.ok(plan1);
     }
 
     @PostMapping("/borrar")
-    public String borrar(@RequestBody Plan plan ) throws Exception {
+    public String borrar(@RequestBody Plan plan) throws Exception {
         planService.delete(plan);
         return "Se elimino el plan";
     }
 
     @PostMapping("/borrarporid")
-    public String borrarPorId(@RequestBody Integer id ) throws Exception {
+    public String borrarPorId(@RequestBody Integer id) throws Exception {
         planService.deleteById(id);
         return "Se elimino el plan";
     }
 
     @GetMapping("/consultar")
-    public List<Plan> consultarPlanes() {
-        return planService.findAll();
+    public ResponseEntity<?> consultarPlanes() {
+        List<Plan> lstPlan = planService.findAll();
+        return ResponseEntity.ok(lstPlan);
     }
 
     @GetMapping("/consultarid")
-    public Optional<Plan> consultarId(@RequestBody Integer id) {
-        return planService.findById(id);
+    public ResponseEntity<?> consultarId(@RequestBody Integer id) {
+        Optional<Plan> plan = planService.findById(id);
+        return ResponseEntity.ok(plan);
     }
 
     @GetMapping("/consultarnombres")
-    public List<String> consultarNombresPlan() {
-        return planService.findAllPlanNamesAndDescription();
+    public ResponseEntity<?> consultarNombresPlan() {
+        List<String> lstPlan = planService.findAllPlanNamesAndDescription();
+        return ResponseEntity.ok(lstPlan);
     }
 
     @GetMapping("/consultarfechas")
-    public List<Plan> consultarFechasPlan(@RequestBody Date fechaInicio, Date fechaFin) {
-        return planService.findByFechaInicioViajeOrFechaFinViaje(fechaInicio, fechaFin);
+    public ResponseEntity<?>  consultarFechasPlan(@RequestBody Date fechaInicio, Date fechaFin) {
+        List<Plan> lstPlan = planService.findByFechaInicioViajeOrFechaFinViaje(fechaInicio, fechaFin);
+        return ResponseEntity.ok(lstPlan);
     }
 
 

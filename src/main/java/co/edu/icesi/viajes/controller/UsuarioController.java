@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.controller;
 import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,15 +34,15 @@ public class UsuarioController {
     }
 
     @PostMapping("/crear")
-    public String crear(@RequestBody Usuario usuario ) throws Exception {
-        usuarioService.save(usuario);
-        return "Se guardo el usuario";
+    public ResponseEntity<?> crear(@RequestBody Usuario usuario) throws Exception {
+        Usuario usuario1 = usuarioService.save(usuario);
+        return ResponseEntity.ok(usuario1);
     }
 
     @PostMapping("/actualizar")
-    public String actualizar(@RequestBody Usuario usuario ) throws Exception {
-        usuarioService.update(usuario);
-        return "Se actualizo el usuario";
+    public ResponseEntity<?> actualizar(@RequestBody Usuario usuario) throws Exception {
+        Usuario usuario1 = usuarioService.update(usuario);
+        return ResponseEntity.ok(usuario1);
     }
 
     @PostMapping("/borrar")
@@ -57,13 +58,15 @@ public class UsuarioController {
     }
 
     @GetMapping("/consultar")
-    public List<Usuario> consultarUsuarios() {
-        return usuarioService.findAll();
+    public ResponseEntity<?> consultarUsuarios() {
+        List<Usuario> lstUsuario = usuarioService.findAll();
+        return ResponseEntity.ok(lstUsuario);
     }
 
     @GetMapping("/consultarid")
-    public Optional<Usuario> buscarIdUsuarios(@RequestBody Integer id) {
-        return usuarioService.findById(id);
+    public ResponseEntity<?> buscarIdUsuarios(@RequestBody Integer id) {
+        Optional<Usuario> usuario = usuarioService.findById(id);
+        return ResponseEntity.ok(usuario);
     }
 
 }
