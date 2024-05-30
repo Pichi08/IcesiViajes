@@ -4,6 +4,7 @@ import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,21 +18,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/asesor")
-    //@PreAuthorize("hasRole('USER')")
-    public String messageUser(){
-        return "Vista Asesor";
-    }
-
-    @GetMapping("/admin")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public String messageAdmin(){
-        return "Vista Admin";
-    }
-
-    @GetMapping("/helloSecured")
-    public String secureEndPoint(){
-        return "End Point protegido, unicmanete ingresan autorizados";
+    @GetMapping("/buscar")
+    public ResponseEntity<?> buscarPorLogin(@RequestParam String login){
+        return ResponseEntity.ok(usuarioService.findUsuarioByLogin(login));
     }
 
     @PostMapping("/crear")

@@ -1,7 +1,9 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.Plan;
+import co.edu.icesi.viajes.domain.Usuario;
 import co.edu.icesi.viajes.repository.PlanRepository;
+import co.edu.icesi.viajes.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class PlanServiceImpl implements PlanService{
 
     @Autowired
     PlanRepository planRepository;
+    @Autowired
+    UsuarioService usuarioService;
 
     @Override
     public List<Plan> findAll() {
@@ -29,6 +33,9 @@ public class PlanServiceImpl implements PlanService{
 
     @Override
     public Plan save(Plan entity) throws Exception {
+        Usuario usuario = usuarioService.findUsuarioByLogin(entity.getUsuario().getLogin());
+        System.out.println("ENTROOO A SERVICE IMPL");
+        entity.setUsuario(usuario);
         return planRepository.save(entity);
     }
 

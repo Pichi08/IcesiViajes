@@ -57,4 +57,10 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Long count() {
         return usuarioRepository.count();
     }
+
+    @Override
+    public Usuario findUsuarioByLogin(String login) {
+        return usuarioRepository.findUsuarioByLogin(login);
+    }
+
 }

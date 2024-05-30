@@ -2,10 +2,9 @@ package co.edu.icesi.viajes.service;
 
 
 import co.edu.icesi.viajes.domain.Destino;
+import co.edu.icesi.viajes.domain.TipoDestino;
 import co.edu.icesi.viajes.dto.DestinoDTO;
 import co.edu.icesi.viajes.repository.DestinoRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -19,6 +18,8 @@ public class DestinoServiceImpl implements DestinoService {
 
     @Autowired
     private DestinoRepository destinoRepository;
+    @Autowired
+    private TipoDestinoService tipoDestinoService;
 
     @Override
     public List<Destino> findAll() {
@@ -32,6 +33,8 @@ public class DestinoServiceImpl implements DestinoService {
 
     @Override
     public Destino save(Destino entity) throws Exception {
+        TipoDestino tipoDestino = tipoDestinoService.findByIdTide(entity.getTipoDestino().getIdTide());
+        entity.setTipoDestino(tipoDestino);
         return destinoRepository.save(entity);
     }
 
@@ -73,5 +76,10 @@ public class DestinoServiceImpl implements DestinoService {
     @Override
     public List<Destino> findDestinoByEstado() {
         return destinoRepository.findDestinoByEstado();
+    }
+
+    @Override
+    public List<DestinoDTO> findName() {
+        return destinoRepository.findName();
     }
 }

@@ -19,6 +19,7 @@ public class DetallePlanController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> crear(@Valid @RequestBody DetallePlan detallePlan) throws Exception {
+        System.out.println("ENTRO A LA API");
         DetallePlan detallePlan1 = detallePlanService.save(detallePlan);
         return ResponseEntity.ok(detallePlan1);
     }

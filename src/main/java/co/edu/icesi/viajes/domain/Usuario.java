@@ -1,4 +1,5 @@
 package co.edu.icesi.viajes.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,25 +37,25 @@ public class Usuario implements UserDetails {
     private String identificacion;
 
     @Column(name = "fecha_creacion")
-    @NotNull(message = "La fecha de creación es obligatoria")
+    //@NotNull(message = "La fecha de creación es obligatoria")
     private Date fechaCreacion;
 
     @Column(name = "fecha_modificacion")
     private Date fechaModificacion;
 
     @Column(name = "usu_creador")
-    @NotBlank(message = "El usuario creador es obligatorio")
+    //@NotBlank(message = "El usuario creador es obligatorio")
     private String usuCreador;
 
     @Column(name = "usu_modificador")
     private String usuModificador;
 
     @Column(name = "estado")
-    @NotBlank(message = "El estado es obligatorio")
+    //@NotBlank(message = "El estado es obligatorio")
     private String estado;
 
     @Column(name = "id_rol")
-    @NotNull(message = "El ID del rol es obligatorio")
+    //@NotNull(message = "El ID del rol es obligatorio")
     private Integer id_rol;
 
 
@@ -65,6 +66,7 @@ public class Usuario implements UserDetails {
      */
 
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (id_rol == 1){

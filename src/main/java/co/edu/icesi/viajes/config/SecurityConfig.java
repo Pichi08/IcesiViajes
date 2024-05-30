@@ -38,12 +38,12 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request->{
                     //Enpoint Publico
-                    request.requestMatchers("/auth/**").permitAll();
+                    request.requestMatchers("/**").permitAll();
                     //Endpoint Privado
-                    request.requestMatchers("/admin/**").hasAnyAuthority("ADMIN");
-                    request.requestMatchers("/asesor/**").hasAnyAuthority("ASESOR");
+                    //request.requestMatchers("/admin/**").hasAnyAuthority("ADMIN");
+                    //request.requestMatchers("/asesor/**").hasAnyAuthority("ASESOR");
                     //request.requestMatchers("/cliente/crear").hasAnyAuthority("ASESOR","ADMIN");
-                    request.anyRequest().authenticated();
+                    //request.anyRequest().authenticated();
                 })
                 .sessionManagement(manager->manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 //Primero se valida si el token es valido, si es valido, entonces verifica el username y la contraseña

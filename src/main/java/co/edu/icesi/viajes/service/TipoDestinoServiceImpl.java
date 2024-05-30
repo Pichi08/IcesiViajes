@@ -79,6 +79,11 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
     }
 
     @Override
+    public TipoDestino findByIdTide(Integer id) {
+        return tipoDestinoRepository.findByIdTide(id);
+    }
+
+    @Override
     public List<TipoDestino> findByCodigo(String codigo) {
         log.info("Buscando tipo de destino por código");
         return tipoDestinoRepository.findByCodigo(codigo);

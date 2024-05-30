@@ -1,5 +1,6 @@
 package co.edu.icesi.viajes.domain;
 import co.edu.icesi.viajes.dto.DestinoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -69,7 +70,13 @@ public class Destino {
     @NotNull(message = "Estado es obligatorio")
     private String estado;
 
+    /*
     @Column(name = "id_tide")
     @NotNull(message = "ID de tipo de destino es obligatorio")
     private Integer idTide;
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tide")
+    @NotNull
+    private TipoDestino tipoDestino;
 }

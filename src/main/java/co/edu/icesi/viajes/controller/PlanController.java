@@ -3,6 +3,7 @@ package co.edu.icesi.viajes.controller;
 import co.edu.icesi.viajes.domain.Plan;
 import co.edu.icesi.viajes.service.PlanService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,13 @@ public class PlanController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> crear(@Valid @RequestBody Plan plan) throws Exception {
-        Plan plan1 = planService.save(plan);
-        return ResponseEntity.ok(plan1);
+        if (plan.getUsuario() == null){
+            return ResponseEntity.badRequest().body("El usuario no puede ser nulo");
+        }
+        else{
+            Plan plan1 = planService.save(plan);
+            return ResponseEntity.ok(plan1);
+        }
     }
 
     @PostMapping("/actualizar")

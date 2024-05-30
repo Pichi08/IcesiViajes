@@ -63,7 +63,14 @@ public class Plan {
     @NotNull(message = "Estado es obligatorio")
     private String estado;
 
+    /*
     @Column(name = "id_usua")
     @NotNull(message = "ID del usuario es obligatorio")
     private Integer idUsua;
+     */
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usua")
+    @NotNull
+    private Usuario usuario;
 }

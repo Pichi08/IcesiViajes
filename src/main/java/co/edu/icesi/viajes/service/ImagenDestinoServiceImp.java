@@ -1,38 +1,47 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.DetallePlan;
+import co.edu.icesi.viajes.domain.ImagenDestino;
+import co.edu.icesi.viajes.repository.ImagenDestinoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ImagenDestinoServiceImp implements DetallePlanService{
+@Service
+public class ImagenDestinoServiceImp implements ImagenDestinoService{
+
+    @Autowired
+    ImagenDestinoRepository imagenDestinoRepository;
+
     @Override
-    public DetallePlan findByPlanId(Integer idPlan) {
+    public List<ImagenDestino> findByOrderByImageId() {
+        return imagenDestinoRepository.findByOrderByImageId();
+    }
+
+    @Override
+    public List<ImagenDestino> findAll() {
         return null;
     }
 
     @Override
-    public List<DetallePlan> findAll() {
-        return null;
-    }
-
-    @Override
-    public Optional<DetallePlan> findById(Integer integer) {
+    public Optional<ImagenDestino> findById(Integer integer) {
         return Optional.empty();
     }
 
     @Override
-    public DetallePlan save(DetallePlan entity) throws Exception {
+    public ImagenDestino save(ImagenDestino entity) throws Exception {
+        return imagenDestinoRepository.save(entity);
+    }
+
+    @Override
+    public ImagenDestino update(ImagenDestino entity) throws Exception {
         return null;
     }
 
     @Override
-    public DetallePlan update(DetallePlan entity) throws Exception {
-        return null;
-    }
-
-    @Override
-    public void delete(DetallePlan entity) throws Exception {
+    public void delete(ImagenDestino entity) throws Exception {
 
     }
 
@@ -42,7 +51,7 @@ public class ImagenDestinoServiceImp implements DetallePlanService{
     }
 
     @Override
-    public void validate(DetallePlan entity) throws Exception {
+    public void validate(ImagenDestino entity) throws Exception {
 
     }
 
@@ -50,4 +59,5 @@ public class ImagenDestinoServiceImp implements DetallePlanService{
     public Long count() {
         return null;
     }
+
 }

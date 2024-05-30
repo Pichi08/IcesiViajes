@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface TipoDestinoRepository extends JpaRepository<TipoDestino, Integer> {
 
+    public TipoDestino findByIdTide(Integer id);
     public List<TipoDestino> findByCodigo(String codigo);
     public List<TipoDestino> findByCodigoAndEstado(String codigo, String estado);
 
