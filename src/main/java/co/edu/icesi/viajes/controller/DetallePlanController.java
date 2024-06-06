@@ -36,8 +36,8 @@ public class DetallePlanController {
         return "Se elimino el detalle del plan";
     }
 
-    @PostMapping("/borrarporid")
-    public String borrarPorId(@Valid @RequestBody Integer id ) throws Exception {
+    @PostMapping("/borrarporid/{id}")
+    public String borrarPorId(@Valid @PathVariable("id") Integer id ) throws Exception {
         detallePlanService.deleteById(id);
         return "Se elimino el detalle del plan";
     }
@@ -49,15 +49,14 @@ public class DetallePlanController {
     }
 
     @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdDetallePlan(@Valid @RequestBody Integer id) {
+    public ResponseEntity<?> buscarIdDetallePlan(@Valid @RequestParam Integer id) {
         Optional<DetallePlan> detallePlan = detallePlanService.findById(id);
         return ResponseEntity.ok(detallePlan);
     }
 
-    @GetMapping("/consultarporidplan")
-    public ResponseEntity<?> buscarDetallePlanPorIdPlan(@Valid @RequestBody Integer id) {
+    @GetMapping("/consultarporidplan/{id}")
+    public ResponseEntity<?> buscarDetallePlanPorIdPlan(@Valid @PathVariable("id") Integer id) {
         DetallePlan detallePlan = detallePlanService.findByPlanId(id);
         return ResponseEntity.ok(detallePlan);
-
     }
 }

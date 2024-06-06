@@ -1,6 +1,5 @@
 package co.edu.icesi.viajes.service;
 
-import co.edu.icesi.viajes.domain.DetallePlan;
 import co.edu.icesi.viajes.domain.ImagenDestino;
 import co.edu.icesi.viajes.repository.ImagenDestinoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,16 @@ public class ImagenDestinoServiceImp implements ImagenDestinoService{
     @Override
     public List<ImagenDestino> findByOrderByImageId() {
         return imagenDestinoRepository.findByOrderByImageId();
+    }
+
+    @Override
+    public List<ImagenDestino> findImagesByPlanId(Integer idPlan) {
+        return imagenDestinoRepository.findImagesByPlanId(idPlan);
+    }
+
+    @Override
+    public Optional<ImagenDestino> getOne(Integer id) {
+        return imagenDestinoRepository.findById(id);
     }
 
     @Override
@@ -46,8 +55,8 @@ public class ImagenDestinoServiceImp implements ImagenDestinoService{
     }
 
     @Override
-    public void deleteById(Integer integer) throws Exception {
-
+    public void deleteById(Integer id) throws Exception {
+        imagenDestinoRepository.deleteById(id);
     }
 
     @Override

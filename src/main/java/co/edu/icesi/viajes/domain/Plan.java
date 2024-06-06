@@ -1,13 +1,47 @@
 package co.edu.icesi.viajes.domain;
+import co.edu.icesi.viajes.dto.DestinoDTO;
+import co.edu.icesi.viajes.dto.PlanDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Date;
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Plan.consultarTodosPlanesImagenes",
+                query = "",
+                resultSetMapping = "Plan.consultarTodosPlanesImagenes"
+        ),
+
+        @NamedNativeQuery(
+                name = "Plan.consultaPlanPorCriterios",
+                query = "",
+                resultSetMapping = "Plan.consultaPlanPorCriterios"
+        )
+})
+@SqlResultSetMappings({
+        @SqlResultSetMapping(
+                name = "Plan.consultarTodosPlanesImagenes",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre", type = String.class),
+                                        @ColumnResult(name = "url", type = String.class),
+                                        @ColumnResult(name = "id_plan", type = Integer.class)
+                                }
+                        )
+                }
+        )
+})
+
 @Data
 @Entity
 @Table(name="plan")
+@JsonIgnoreProperties(value = {"usuario"}, allowSetters = true)
 public class Plan {
 
     @Id
@@ -68,7 +102,6 @@ public class Plan {
     @NotNull(message = "ID del usuario es obligatorio")
     private Integer idUsua;
      */
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usua")
     @NotNull

@@ -1,38 +1,43 @@
 package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.DetallePlan;
+import co.edu.icesi.viajes.domain.PlanCliente;
+import co.edu.icesi.viajes.repository.PlanClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+@Scope("singleton")
+@Service
+public class PlanClienteServiceImp implements PlanClienteService{
 
-public class PlanClienteServiceImp implements DetallePlanService{
+    @Autowired
+    PlanClienteRepository planClienteRepository;
+
     @Override
-    public DetallePlan findByPlanId(Integer idPlan) {
+    public List<PlanCliente> findAll() {
         return null;
     }
 
     @Override
-    public List<DetallePlan> findAll() {
-        return null;
-    }
-
-    @Override
-    public Optional<DetallePlan> findById(Integer integer) {
+    public Optional<PlanCliente> findById(Integer integer) {
         return Optional.empty();
     }
 
     @Override
-    public DetallePlan save(DetallePlan entity) throws Exception {
+    public PlanCliente save(PlanCliente entity) throws Exception {
+        return planClienteRepository.save(entity);
+    }
+
+    @Override
+    public PlanCliente update(PlanCliente entity) throws Exception {
         return null;
     }
 
     @Override
-    public DetallePlan update(DetallePlan entity) throws Exception {
-        return null;
-    }
-
-    @Override
-    public void delete(DetallePlan entity) throws Exception {
+    public void delete(PlanCliente entity) throws Exception {
 
     }
 
@@ -42,7 +47,7 @@ public class PlanClienteServiceImp implements DetallePlanService{
     }
 
     @Override
-    public void validate(DetallePlan entity) throws Exception {
+    public void validate(PlanCliente entity) throws Exception {
 
     }
 

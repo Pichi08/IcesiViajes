@@ -36,11 +36,10 @@ public class ClienteController {
         return "Se elimino el cliente";
     }
 
-    @PostMapping("/borrarporid")
-
-    public String borrarPorId(@Valid @RequestBody Integer id ) throws Exception {
+    @PostMapping("/borrarporid/{id}")
+    public ResponseEntity<?> borrarPorId(@Valid @PathVariable("id") Integer id ) throws Exception {
         clienteService.deleteById(id);
-        return "Se elimino el cliente";
+        return ResponseEntity.ok("Se elimino el cliente correctamente");
     }
 
     @GetMapping("/consultar")
@@ -49,8 +48,8 @@ public class ClienteController {
         return ResponseEntity.ok(lstClientes);
     }
 
-    @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdClientes(@Valid @RequestBody Integer id) {
+    @GetMapping("/consultarid/{id}")
+    public ResponseEntity<?> buscarIdClientes(@Valid @PathVariable("id") Integer id) {
         Optional<Cliente> client = clienteService.findById(id);
         return ResponseEntity.ok(client);
     }

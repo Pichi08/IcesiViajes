@@ -1,6 +1,7 @@
 package co.edu.icesi.viajes.controller;
 
 import co.edu.icesi.viajes.domain.Plan;
+import co.edu.icesi.viajes.dto.PlanDTO;
 import co.edu.icesi.viajes.service.PlanService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
@@ -30,6 +31,12 @@ public class PlanController {
         }
     }
 
+    @GetMapping("/obtenerplanesimagenes")
+    public ResponseEntity<?> obtenerPlanes(){
+        List<PlanDTO> lstPlan = planService.consultarTodosPlanesImagenes();
+        return ResponseEntity.ok(lstPlan);
+    }
+
     @PostMapping("/actualizar")
     public ResponseEntity<?> actualizar(@Valid @RequestBody Plan plan) throws Exception {
         Plan plan1 = planService.update(plan);
@@ -42,10 +49,10 @@ public class PlanController {
         return "Se elimino el plan";
     }
 
-    @PostMapping("/borrarporid")
-    public String borrarPorId(@Valid @RequestBody Integer id ) throws Exception {
+    @PostMapping("/borrarporid/{id}")
+    public ResponseEntity<?> borrarPorId(@Valid @PathVariable("id") Integer id ) throws Exception {
         planService.deleteById(id);
-        return "Se elimino el plan";
+        return ResponseEntity.ok("Se elimino el Plan correctamente");
     }
 
     @GetMapping("/consultar")
@@ -54,8 +61,8 @@ public class PlanController {
         return ResponseEntity.ok(lstPlan);
     }
 
-    @GetMapping("/consultarid")
-    public ResponseEntity<?> consultarId(@Valid @RequestBody Integer id) {
+    @GetMapping("/consultarid/{id}")
+    public ResponseEntity<?> consultarId(@Valid @PathVariable("id") Integer id) {
         Optional<Plan> plan = planService.findById(id);
         return ResponseEntity.ok(plan);
     }

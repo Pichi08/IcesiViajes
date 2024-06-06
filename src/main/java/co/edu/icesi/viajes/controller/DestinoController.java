@@ -40,8 +40,8 @@ public class DestinoController {
     }
 
 
-    @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdDestino(@Valid @RequestBody Integer id) {
+    @GetMapping("/consultarid/{id}")
+    public ResponseEntity<?> buscarIdDestino(@Valid @PathVariable("id") Integer id) {
         Optional<Destino> destino = destinoService.findById(id);
         return ResponseEntity.ok(destino);
     }

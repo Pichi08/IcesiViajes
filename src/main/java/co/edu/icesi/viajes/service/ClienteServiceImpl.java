@@ -41,6 +41,23 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     public Cliente update(Cliente entity) throws Exception {
+        Optional<Cliente> cliente = clienteRepository.findById(entity.getIdClie());
+        if(cliente.isPresent()){
+            Cliente cliente1 = cliente.get();
+            cliente1.setNumeroIdentificacion(entity.getNumeroIdentificacion());
+            cliente1.setPrimerApellido(entity.getPrimerApellido());
+            cliente1.setSegundoApellido(entity.getSegundoApellido());
+            cliente1.setNombre(entity.getNombre());
+            cliente1.setTelefono1(entity.getTelefono1());
+            cliente1.setTelefono2(entity.getTelefono2());
+            cliente1.setCorreo(entity.getCorreo());
+            cliente1.setSexo(entity.getSexo());
+            cliente1.setFechaNacimiento(entity.getFechaNacimiento());
+            cliente1.setIdTiid(entity.getIdTiid());
+            cliente1.setFechaModificacion(entity.getFechaModificacion());
+            cliente1.setUsuModificador(entity.getUsuModificador());
+
+        }
         return clienteRepository.save(entity);
     }
 

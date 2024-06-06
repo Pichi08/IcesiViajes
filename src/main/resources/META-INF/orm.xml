@@ -61,6 +61,16 @@
     </entity>
 
     <entity class="co.edu.icesi.viajes.domain.Plan">
+        <named-native-query name="Plan.consultarTodosPlanesImagenes" result-set-mapping="Plan.consultarTodosPlanesImagenes">
+            <query>
+                SELECT p.nombre AS nombre, p.id_plan, MIN(imgD.url_img) AS url
+                FROM plan AS p
+                JOIN imagen_destino AS imgD ON p.id_plan = imgD.id_plan
+                GROUP BY p.nombre, p.id_plan;
+
+
+            </query>
+        </named-native-query>
 
     </entity>
 

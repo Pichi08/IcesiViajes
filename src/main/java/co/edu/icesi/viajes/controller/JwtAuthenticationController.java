@@ -16,7 +16,7 @@ public class JwtAuthenticationController {
 
 
     @PostMapping("/auth/register")
-    public ResponseEntity<ReqRes> register(@Valid@RequestBody ReqRes reg){
+    public ResponseEntity<ReqRes> register(@Valid @RequestBody ReqRes reg){
         return ResponseEntity.ok(authenticationService.register(reg));
     }
 

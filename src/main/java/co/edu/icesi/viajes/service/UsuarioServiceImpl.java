@@ -35,7 +35,20 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public Usuario update(Usuario entity) throws Exception {
-        return usuarioRepository.save(entity);
+        Optional<Usuario> usuario = usuarioRepository.findById(entity.getIdUsua());
+        if (usuario.isPresent()){
+            Usuario usuario1 = usuario.get();
+            usuario1.setLogin(entity.getLogin());
+            usuario1.setPassword(entity.getPassword());
+            usuario1.setNombre(entity.getNombre());
+            usuario1.setIdentificacion(entity.getIdentificacion());
+            usuario1.setId_rol(entity.getId_rol());
+            usuario1.setFechaModificacion(entity.getFechaModificacion());
+            usuario1.setUsuModificador(entity.getUsuModificador());
+            return usuarioRepository.save(usuario1);
+
+        }
+        return null;
     }
 
     @Override

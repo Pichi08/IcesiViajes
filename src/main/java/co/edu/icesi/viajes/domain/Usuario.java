@@ -76,7 +76,7 @@ public class Usuario implements UserDetails {
             GrantedAuthority authority = new SimpleGrantedAuthority("ASESOR");
             return Collections.singleton(authority);
         } else if (id_rol == 3) {
-            GrantedAuthority authority = new SimpleGrantedAuthority("ASESOR");
+            GrantedAuthority authority = new SimpleGrantedAuthority("VIEWER");
             return Collections.singleton(authority);
         }else
             return null;

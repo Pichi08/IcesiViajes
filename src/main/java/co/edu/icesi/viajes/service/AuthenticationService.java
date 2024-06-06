@@ -40,6 +40,9 @@ public class AuthenticationService {
             usuario.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
             usuario.setNombre(registrationRequest.getNombre());
             usuario.setIdentificacion(registrationRequest.getIdentificacion());
+            usuario.setFechaCreacion(registrationRequest.getFechaCreacion());
+            usuario.setUsuCreador(registrationRequest.getUsuCreador());
+            usuario.setEstado(registrationRequest.getEstado());
             String tipoRol = registrationRequest.getRol();
 
             if (tipoRol.equals("ADMIN")){
@@ -49,6 +52,7 @@ public class AuthenticationService {
             } else if (tipoRol.equals("VIEWER")){
                 usuario.setId_rol(3);
             }
+
 
 
             /*

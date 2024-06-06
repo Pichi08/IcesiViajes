@@ -33,7 +33,23 @@ public class DetallePlanServiceImpl implements DetallePlanService{
 
     @Override
     public DetallePlan update(DetallePlan entity) throws Exception {
-        return detallePlanRepository.save(entity);
+        Optional<DetallePlan> detallePlan = detallePlanRepository.findById(entity.getIdDepl());
+        if (detallePlan.isPresent()){
+            DetallePlan detallePlan1 = detallePlan.get();
+            detallePlan1.setAlimentacion(entity.getAlimentacion());
+            detallePlan1.setHospedaje(entity.getHospedaje());
+            detallePlan1.setTraslados(entity.getTraslados());
+            detallePlan1.setCantidadNoches(entity.getCantidadNoches());
+            detallePlan1.setCantidadDias(entity.getCantidadDias());
+            detallePlan1.setFechaModificacion(entity.getFechaModificacion());
+            detallePlan1.setUsuModificador(entity.getUsuModificador());
+            detallePlan1.setIdDest(entity.getIdDest());
+
+            return detallePlanRepository.save(detallePlan1);
+
+
+        }
+        return null;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class UsuarioController {
 
     @PostMapping("/actualizar")
     public ResponseEntity<?> actualizar(@Valid @RequestBody Usuario usuario) throws Exception {
-        Usuario usuario1 = usuarioService.update(usuario);
+        Usuario usuario1 =   usuarioService.update(usuario);
         return ResponseEntity.ok(usuario1);
     }
 
@@ -41,10 +41,10 @@ public class UsuarioController {
         return "Se elimino el usuario";
     }
 
-    @PostMapping("/borrarporid")
-    public String borrarPorId(@Valid @RequestBody Integer id) throws Exception {
+    @PostMapping("/borrarporid/{id}")
+    public ResponseEntity<?> borrarPorId(@Valid @PathVariable("id") Integer id) throws Exception {
         usuarioService.deleteById(id);
-        return "Se elimino el usuario";
+        return ResponseEntity.ok("Se elimino correctamente el usuario");
     }
 
     @GetMapping("/consultar")
@@ -53,8 +53,8 @@ public class UsuarioController {
         return ResponseEntity.ok(lstUsuario);
     }
 
-    @GetMapping("/consultarid")
-    public ResponseEntity<?> buscarIdUsuarios(@Valid @RequestBody Integer id) {
+    @GetMapping("/consultarid/{id}")
+    public ResponseEntity<?> buscarIdUsuarios(@Valid @PathVariable("id") Integer id) {
         Optional<Usuario> usuario = usuarioService.findById(id);
         return ResponseEntity.ok(usuario);
     }
