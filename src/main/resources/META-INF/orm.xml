@@ -145,6 +145,16 @@
         </named-native-query>
     </entity>
 
+    <entity class="co.edu.icesi.viajes.domain.PlanCliente">
+        <named-native-query name="PlanCliente.consultarPlanesPorCliente" result-set-mapping="PlanCliente.consultarPlanesPorCliente">
+            <query>
+                SELECT pc.id_plan_clie,p.id_plan,pc.id_clie,p.nombre FROM plan_cliente AS pc
+                JOIN plan as p on pc.id_plan = p.id_plan
+                WHERE id_clie = :pIdClie
+            </query>
+        </named-native-query>
+    </entity>
+
     <entity class="co.edu.icesi.viajes.domain.TipoDestino">
 
     </entity>

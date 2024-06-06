@@ -2,6 +2,7 @@ package co.edu.icesi.viajes.service;
 
 import co.edu.icesi.viajes.domain.DetallePlan;
 import co.edu.icesi.viajes.domain.PlanCliente;
+import co.edu.icesi.viajes.dto.PlanClienteDTO;
 import co.edu.icesi.viajes.repository.PlanClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -54,5 +55,10 @@ public class PlanClienteServiceImp implements PlanClienteService{
     @Override
     public Long count() {
         return null;
+    }
+
+    @Override
+    public List<PlanClienteDTO> consultarPlanesPorCliente(Integer idClie) {
+        return planClienteRepository.consultarPlanesPorCliente(idClie);
     }
 }
