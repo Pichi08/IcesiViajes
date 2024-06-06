@@ -20,4 +20,17 @@ public interface PlanRepository extends JpaRepository<Plan, Integer> {
 
     @Query("SELECT p FROM Plan p WHERE p.fechaInicioViaje = :fechaInicio OR p.fechaFinViaje = :fechaFin")
     List<Plan> findByFechaInicioViajeOrFechaFinViaje(@Param("fechaInicio") Date fechaInicio, @Param("fechaFin") Date fechaFin);
+
+    @Query(nativeQuery = true)
+    List<PlanDTO> consultarPlanesBusqueda(@Param("nombreDestino") String nombre);
+
+    @Query(nativeQuery = true)
+    List<PlanDTO> consultarPlanesFechasBusqueda(@Param("nombreDestino") String nombre, @Param("fechaInicioViaje") Date fechaInicio, @Param("fechaFinViaje") Date fechaFin);
+
+    @Query(nativeQuery = true)
+    List<PlanDTO> consultarPlanesYPersonasBusqueda(@Param("nombreDestino") String nombre, @Param("cantidadPersonas") Integer personas);
+
+    @Query(nativeQuery = true)
+    List<PlanDTO> consultarPlanesYFechasYPersonasBusqueda(@Param("nombreDestino") String nombre, @Param("fechaInicioViaje") Date fechaInicio, @Param("fechaFinViaje") Date fechaFin, @Param("cantidadPersonas") Integer personas);
+
 }

@@ -98,4 +98,24 @@ public class PlanServiceImpl implements PlanService{
     public List<PlanDTO> findByCriterios(String nombreDest, Date fechaInicio, Date fechaFin, Integer cantidadPer) {
         return null;
     }
+
+    @Override
+    public List<PlanDTO> consultarPlanesBusqueda(String nombre) {
+        return planRepository.consultarPlanesBusqueda(nombre);
+    }
+
+    @Override
+    public List<PlanDTO> consultarPlanesFechasBusqueda(String nombre, Date fechaInicio, Date fechaFin) {
+        return planRepository.consultarPlanesFechasBusqueda(nombre, fechaInicio, fechaFin);
+    }
+
+    @Override
+    public List<PlanDTO> consultarPlanesYPersonasBusqueda(String nombre, Integer personas) {
+        return planRepository.consultarPlanesYPersonasBusqueda(nombre, personas);
+    }
+
+    @Override
+    public List<PlanDTO> consultarPlanesYFechasYPersonasBusqueda(String nombre, Date fechaInicio, Date fechaFin, Integer personas) {
+        return planRepository.consultarPlanesYFechasYPersonasBusqueda(nombre, fechaInicio, fechaFin, personas);
+    }
 }

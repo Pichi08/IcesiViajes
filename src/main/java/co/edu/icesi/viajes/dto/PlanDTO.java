@@ -23,10 +23,9 @@ public class PlanDTO implements Serializable {
         this.idPlan = idPlan;
     }
 
-
-    public PlanDTO(String planNombre, String destinoNombre, Date fechaInicioViaje, Date fechaFinViaje, Integer cantidadPersonas, Double valorTotal, String url) {
-        this.plan_nombre = planNombre;
-        this.destino_nombre = destinoNombre;
+    public PlanDTO(String plan_nombre, String destino_nombre, Date fechaInicioViaje, Date fechaFinViaje, Integer cantidadPersonas, Double valorTotal, String url) {
+        this.plan_nombre = plan_nombre;
+        this.destino_nombre = destino_nombre;
         this.fechaInicioViaje = fechaInicioViaje;
         this.fechaFinViaje = fechaFinViaje;
         this.cantidadPersonas = cantidadPersonas;

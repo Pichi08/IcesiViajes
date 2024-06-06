@@ -35,8 +35,82 @@ import java.util.Date;
                                 }
                         )
                 }
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarPlanesBusqueda",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre_plan", type = String.class),
+                                        @ColumnResult(name = "nombre_destino", type = String.class),
+                                        @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
+                                        @ColumnResult(name = "fecha_fin_viaje", type = Date.class),
+                                        @ColumnResult(name = "cantidad_personas", type = Integer.class),
+                                        @ColumnResult(name = "valor_total", type = Double.class),
+                                        @ColumnResult(name = "url_img", type = String.class)
+                                }
+                        )
+                }
+
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarPlanesFechasBusqueda",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre_plan", type = String.class),
+                                        @ColumnResult(name = "nombre_destino", type = String.class),
+                                        @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
+                                        @ColumnResult(name = "fecha_fin_viaje", type = Date.class),
+                                        @ColumnResult(name = "cantidad_personas", type = Integer.class),
+                                        @ColumnResult(name = "valor_total", type = Double.class),
+                                        @ColumnResult(name = "url_img", type = String.class)
+                                }
+                        )
+                }
+
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarPlanesYPersonasBusqueda",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre_plan", type = String.class),
+                                        @ColumnResult(name = "nombre_destino", type = String.class),
+                                        @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
+                                        @ColumnResult(name = "fecha_fin_viaje", type = Date.class),
+                                        @ColumnResult(name = "cantidad_personas", type = Integer.class),
+                                        @ColumnResult(name = "valor_total", type = Double.class),
+                                        @ColumnResult(name = "url_img", type = String.class)
+                                }
+                        )
+                }
+
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarPlanesYFechasYPersonasBusqueda",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "nombre_plan", type = String.class),
+                                        @ColumnResult(name = "nombre_destino", type = String.class),
+                                        @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
+                                        @ColumnResult(name = "fecha_fin_viaje", type = Date.class),
+                                        @ColumnResult(name = "cantidad_personas", type = Integer.class),
+                                        @ColumnResult(name = "valor_total", type = Double.class),
+                                        @ColumnResult(name = "url_img", type = String.class)
+                                }
+                        )
+                }
+
         )
+
 })
+
 
 @Data
 @Entity
