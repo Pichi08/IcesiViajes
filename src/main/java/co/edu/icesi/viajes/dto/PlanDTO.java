@@ -23,7 +23,8 @@ public class PlanDTO implements Serializable {
         this.idPlan = idPlan;
     }
 
-    public PlanDTO(String plan_nombre, String destino_nombre, Date fechaInicioViaje, Date fechaFinViaje, Integer cantidadPersonas, Double valorTotal, String url) {
+    public PlanDTO(Integer idPlan,String plan_nombre, String destino_nombre, Date fechaInicioViaje, Date fechaFinViaje, Integer cantidadPersonas, Double valorTotal, String url) {
+        this.idPlan = idPlan;
         this.plan_nombre = plan_nombre;
         this.destino_nombre = destino_nombre;
         this.fechaInicioViaje = fechaInicioViaje;
@@ -32,6 +33,17 @@ public class PlanDTO implements Serializable {
         this.valorTotal = valorTotal;
         this.url = url;
     }
+
+    public PlanDTO(String usuCreador, Integer cantidad_planes, Long potencial_ventas) {
+        this.usuCreador = usuCreador;
+        this.cantidad_planes = cantidad_planes;
+        this.potencial_ventas = potencial_ventas;
+    }
+
+    public PlanDTO(Long total_ventas) {
+        this.total_ventas = total_ventas;
+    }
+
 
     private Integer idPlan;
     private String plan_nombre;
@@ -42,6 +54,13 @@ public class PlanDTO implements Serializable {
     private Date fechaInicioViaje;
     private Date fechaFinViaje;
     private Double valorTotal;
+
+    private String usuCreador;
+    private Integer cantidad_planes;
+    private Long potencial_ventas;
+
+    private Long total_ventas;
+
 
 
 

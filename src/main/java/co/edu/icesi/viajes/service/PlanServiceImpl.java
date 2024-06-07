@@ -118,4 +118,19 @@ public class PlanServiceImpl implements PlanService{
     public List<PlanDTO> consultarPlanesYFechasYPersonasBusqueda(String nombre, Date fechaInicio, Date fechaFin, Integer personas) {
         return planRepository.consultarPlanesYFechasYPersonasBusqueda(nombre, fechaInicio, fechaFin, personas);
     }
+
+    @Override
+    public List<PlanDTO> consultarPotencialAsesores() {
+        return planRepository.consultarPotencialAsesores();
+    }
+
+    @Override
+    public PlanDTO consultarTotalVentas() {
+        return planRepository.consultarTotalVentas();
+    }
+
+    @Override
+    public PlanDTO consultarVentasReales() {
+        return planRepository.consultarVentasReales();
+    }
 }

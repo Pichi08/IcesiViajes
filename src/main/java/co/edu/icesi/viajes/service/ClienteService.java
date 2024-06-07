@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface ClienteService extends GenericService<Cliente, Integer>{
     List<ClienteDTO> consultarClientesPorNombre(@Param("pNombre") String nombre);
@@ -21,5 +22,7 @@ public interface ClienteService extends GenericService<Cliente, Integer>{
     Page<ClienteDTO> consultarPorTipoID(@Param("pCodigo") String codigo, Pageable pageable);
     List<Cliente> findBySexoOrderByFechaNacimiento(String sexo);
     List<ClienteDTO> consultarPlanYDetallePlan(@Param("pNombre") String nombre);
+    Optional<Cliente> findByNumeroIdentificacion(String numeroId);
+
 
 }

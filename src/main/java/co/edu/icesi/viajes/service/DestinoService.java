@@ -13,6 +13,8 @@ public interface DestinoService extends GenericService<Destino, Integer>{
     List<DestinoDTO> consultaDestinosPorTipoDestin(@Param("pNombre") String nombre);
     List<Destino> findDestinoByEstado();
     List<DestinoDTO> findName();
+    boolean existsByCodigo(String codigo);
+    boolean existsByIdDest(Integer idDest);
 
 
 }

@@ -33,9 +33,15 @@ public class DestinoServiceImpl implements DestinoService {
 
     @Override
     public Destino save(Destino entity) throws Exception {
-        TipoDestino tipoDestino = tipoDestinoService.findByIdTide(entity.getTipoDestino().getIdTide());
-        entity.setTipoDestino(tipoDestino);
-        return destinoRepository.save(entity);
+        if (destinoRepository.existsByCodigo(entity.getCodigo())) {
+            throw new Exception("El código ya está en uso");
+        }else if (entity.getIdDest() != null && destinoRepository.existsById(entity.getIdDest())) {
+            throw new Exception("El idDest ya está en uso");
+        } else {
+            TipoDestino tipoDestino = tipoDestinoService.findByIdTide(entity.getTipoDestino().getIdTide());
+            entity.setTipoDestino(tipoDestino);
+            return destinoRepository.save(entity);
+        }
     }
 
     @Override
@@ -81,5 +87,15 @@ public class DestinoServiceImpl implements DestinoService {
     @Override
     public List<DestinoDTO> findName() {
         return destinoRepository.findName();
+    }
+
+    @Override
+    public boolean existsByCodigo(String codigo) {
+        return destinoRepository.existsByCodigo(codigo);
+    }
+
+    @Override
+    public boolean existsByIdDest(Integer idDest) {
+        return destinoRepository.existsByIdDest(idDest);
     }
 }

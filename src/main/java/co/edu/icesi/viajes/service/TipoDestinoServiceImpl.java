@@ -26,13 +26,11 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 
     @Override
     public List<TipoDestino> findAll() {
-        log.info("Buscando todos los tipos de destino");
         return tipoDestinoRepository.findAll();
     }
 
     @Override
     public Optional<TipoDestino> findById(Integer id) {
-        log.info("Buscando tipo de destino por id");
         return tipoDestinoRepository.findById(id);
     }
 
@@ -45,25 +43,21 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
             throw new Exception("El tipo de destino con el código " + entity.getCodigo() + " ya existe");
         }
 
-        log.info("Guardando tipo de destino");
         return tipoDestinoRepository.save(entity);
     }
 
     @Override
     public TipoDestino update(TipoDestino entity) throws Exception {
-        log.info("Actualizando tipo de destino");
         return tipoDestinoRepository.save(entity);
     }
 
     @Override
     public void delete(TipoDestino entity) throws Exception {
-        log.info("Eliminando tipo de destino");
         tipoDestinoRepository.delete(entity);
     }
 
     @Override
     public void deleteById(Integer id) throws Exception {
-        log.info("Eliminando tipo de destino por id");
         tipoDestinoRepository.deleteById(id);
     }
 
@@ -74,7 +68,6 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 
     @Override
     public Long count() {
-        log.info("Contando tipos de destino");
         return tipoDestinoRepository.count();
     }
 
@@ -85,13 +78,11 @@ public class TipoDestinoServiceImpl implements TipoDestinoService {
 
     @Override
     public List<TipoDestino> findByCodigo(String codigo) {
-        log.info("Buscando tipo de destino por código");
         return tipoDestinoRepository.findByCodigo(codigo);
     }
 
     @Override
     public List<TipoDestino> findByCodigoAndEstado(String codigo, String estado) {
-        log.info("Buscando tipo de destino por código y estado");
         return tipoDestinoRepository.findByCodigoAndEstado(codigo, estado);
     }
 

@@ -6,6 +6,7 @@ import co.edu.icesi.viajes.service.PlanService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -78,5 +79,64 @@ public class PlanController {
         List<Plan> lstPlan = planService.findByFechaInicioViajeOrFechaFinViaje(fechaInicio, fechaFin);
         return ResponseEntity.ok(lstPlan);
     }
+
+    @GetMapping("/consultarpornombre/{nombreDestino}")
+    public ResponseEntity<?> consultarPlanesPorDestino(@PathVariable("nombreDestino") String nombreDestno){
+        List<PlanDTO> lstPlans = planService.consultarPlanesBusqueda(nombreDestno);
+        return ResponseEntity.ok(lstPlans);
+    }
+    @GetMapping("/consultarfechas/{nombreDestino}/{fechaInicioViaje}/{fechaFinViaje}")
+    public ResponseEntity<?> consultarPlanesPorDestino(
+            @PathVariable("nombreDestino") String nombreDestno,
+            @PathVariable("fechaInicioViaje") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
+            @PathVariable("fechaFinViaje") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaFin){
+
+        List<PlanDTO> lstPlans = planService.consultarPlanesFechasBusqueda(nombreDestno, fechaInicio, fechaFin);
+        return ResponseEntity.ok(lstPlans);
+    }
+    @GetMapping("/consultardestpersonas/{nombreDestino}/{cantidadPersonas}")
+    public ResponseEntity<?> consultarPlanesPorDestinoCantidadPersonas(
+            @PathVariable("nombreDestino") String nombreDestino,
+            @PathVariable("cantidadPersonas") Integer personas
+    ){
+        List<PlanDTO> lstPlans = planService.consultarPlanesYPersonasBusqueda(nombreDestino,personas);
+        return ResponseEntity.ok(lstPlans);
+    }
+
+    @GetMapping("/consultartodo/{nombreDestino}/{fechaInicioViaje}/{fechaFinViaje}/{cantidadPersonas}")
+    public ResponseEntity<?> consultarPlanesPorTodosCriterios(
+            @PathVariable("nombreDestino") String nombreDestino,
+            @PathVariable("fechaInicioViaje") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
+            @PathVariable("fechaFinViaje") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaFin,
+            @PathVariable("cantidadPersonas") Integer personas
+    ){
+        List<PlanDTO> lstPlans = planService.consultarPlanesYFechasYPersonasBusqueda(nombreDestino, fechaInicio, fechaFin, personas);
+        return ResponseEntity.ok(lstPlans);
+    }
+
+    @GetMapping("/contar")
+    public ResponseEntity<?> contarPlanes(){
+        Long totalPlanes = planService.count();
+        return ResponseEntity.ok(totalPlanes);
+    }
+
+    @GetMapping("/consultarpotencial")
+    public ResponseEntity<?> potencialAsesores(){
+        List<PlanDTO> lstAsesores = planService.consultarPotencialAsesores();
+        return ResponseEntity.ok(lstAsesores);
+    }
+
+    @GetMapping("/consultartotalventas")
+    public ResponseEntity<?> totalVentas(){
+        PlanDTO totalVentas = planService.consultarTotalVentas();
+        return ResponseEntity.ok(totalVentas);
+    }
+
+    @GetMapping("/consultarventasreales")
+    public ResponseEntity<?> ventasReales(){
+        PlanDTO ventasReales = planService.consultarVentasReales();
+        return ResponseEntity.ok(ventasReales);
+    }
+
 
 }

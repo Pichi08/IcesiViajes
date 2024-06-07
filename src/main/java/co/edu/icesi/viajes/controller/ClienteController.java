@@ -53,4 +53,10 @@ public class ClienteController {
         Optional<Cliente> client = clienteService.findById(id);
         return ResponseEntity.ok(client);
     }
+
+    @GetMapping("/contar")
+    public ResponseEntity<?> contarClientes(){
+        Long totalClientes = clienteService.count();
+        return ResponseEntity.ok(totalClientes);
+    }
 }

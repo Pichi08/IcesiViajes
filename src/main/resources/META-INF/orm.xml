@@ -71,30 +71,33 @@
         </named-native-query>
         <named-native-query name="Plan.consultarPlanesBusqueda" result-set-mapping="Plan.consultarPlanesBusqueda">
             <query>
-                SELECT p.nombre AS nombre_plan,
+                SELECT
+                p.id_plan as idPlan,
+                p.nombre AS nombre_plan,
                 d.nombre AS nombre_destino,
                 p.fecha_inicio_viaje,
                 p.fecha_fin_viaje,
                 p.cantidad_personas,
                 p.valor_total,
-                MIN(imgD.url_img) AS url_img
+                imgD.url_img AS url_img
                 FROM plan p
                 JOIN detalle_plan dp ON p.id_plan = dp.id_plan
                 JOIN destino d ON dp.id_dest = d.id_dest
                 JOIN imagen_destino imgD ON p.id_plan = imgD.id_plan
                 WHERE d.nombre = :nombreDestino
-                GROUP BY p.nombre, d.nombre, p.fecha_inicio_viaje, p.fecha_fin_viaje, p.cantidad_personas, p.valor_total;
             </query>
         </named-native-query>
         <named-native-query name="Plan.consultarPlanesFechasBusqueda" result-set-mapping="Plan.consultarPlanesFechasBusqueda">
             <query>
-                SELECT p.nombre AS nombre_plan,
+                SELECT
+                p.id_plan as idPlan,
+                p.nombre AS nombre_plan,
                 d.nombre AS nombre_destino,
                 p.fecha_inicio_viaje,
                 p.fecha_fin_viaje,
                 p.cantidad_personas,
                 p.valor_total,
-                MIN(imgD.url_img) AS url_img
+                imgD.url_img AS url_img
                 FROM plan p
                 JOIN detalle_plan dp ON p.id_plan = dp.id_plan
                 JOIN destino d ON dp.id_dest = d.id_dest
@@ -102,36 +105,38 @@
                 WHERE d.nombre = :nombreDestino
                 AND p.fecha_inicio_viaje = :fechaInicioViaje
                 AND p.fecha_fin_viaje = :fechaFinViaje
-                GROUP BY p.nombre, d.nombre, p.fecha_inicio_viaje, p.fecha_fin_viaje, p.cantidad_personas, p.valor_total;
             </query>
         </named-native-query>
         <named-native-query name="Plan.consultarPlanesYPersonasBusqueda" result-set-mapping="Plan.consultarPlanesYPersonasBusqueda">
             <query>
-                SELECT p.nombre AS nombre_plan,
+                SELECT
+                p.id_plan as idPlan,
+                p.nombre AS nombre_plan,
                 d.nombre AS nombre_destino,
                 p.fecha_inicio_viaje,
                 p.fecha_fin_viaje,
                 p.cantidad_personas,
                 p.valor_total,
-                MIN(imgD.url_img) AS url_img
+                imgD.url_img AS url_img
                 FROM plan p
                 JOIN detalle_plan dp ON p.id_plan = dp.id_plan
                 JOIN destino d ON dp.id_dest = d.id_dest
                 JOIN imagen_destino imgD ON p.id_plan = imgD.id_plan
                 WHERE d.nombre = :nombreDestino
-                AND p.cantidadPersonas = :cantidadPersonas
-                GROUP BY p.nombre, d.nombre, p.fecha_inicio_viaje, p.fecha_fin_viaje, p.cantidad_personas, p.valor_total;
+                AND p.cantidad_personas = :cantidadPersonas
             </query>
         </named-native-query>
         <named-native-query name="Plan.consultarPlanesYFechasYPersonasBusqueda" result-set-mapping="Plan.consultarPlanesYFechasYPersonasBusqueda">
             <query>
-                SELECT p.nombre AS nombre_plan,
+                SELECT
+                p.id_plan as idPlan,
+                p.nombre AS nombre_plan,
                 d.nombre AS nombre_destino,
                 p.fecha_inicio_viaje,
                 p.fecha_fin_viaje,
                 p.cantidad_personas,
                 p.valor_total,
-                MIN(imgD.url_img) AS url_img
+                imgD.url_img AS url_img
                 FROM plan p
                 JOIN detalle_plan dp ON p.id_plan = dp.id_plan
                 JOIN destino d ON dp.id_dest = d.id_dest
@@ -139,8 +144,41 @@
                 WHERE d.nombre = :nombreDestino
                 AND p.fecha_inicio_viaje = :fechaInicioViaje
                 AND p.fecha_fin_viaje = :fechaFinViaje
-                AND p.cantidadPersonas = :cantidadPersonas
-                GROUP BY p.nombre, d.nombre, p.fecha_inicio_viaje, p.fecha_fin_viaje, p.cantidad_personas, p.valor_total;
+                AND p.cantidad_personas = :cantidadPersonas
+            </query>
+        </named-native-query>
+        <named-native-query name="Plan.consultarPotencialAsesores" result-set-mapping="Plan.consultarPotencialAsesores">
+            <query>
+                SELECT
+                usu_creador,
+                COUNT(*) AS cantidad_planes,
+                SUM(valor_total) AS potencial_ventas
+                FROM
+                plan
+                GROUP BY
+                usu_creador;
+            </query>
+        </named-native-query>
+        <named-native-query name="Plan.consultarTotalVentas" result-set-mapping="Plan.consultarTotalVentas">
+            <query>
+                SELECT
+                SUM(valor_total) AS total_ventas
+                FROM
+                plan
+            </query>
+        </named-native-query>
+        <named-native-query name="Plan.consultarVentasReales" result-set-mapping="Plan.consultarVentasReales">
+            <query>
+                SELECT
+                SUM(pc.ventas * p.valor_total) AS total_ventas
+                FROM
+                (SELECT id_plan, COUNT(*) AS ventas
+                FROM plan_cliente
+                GROUP BY id_plan) AS pc
+                JOIN
+                plan AS p
+                ON
+                pc.id_plan = p.id_plan;
             </query>
         </named-native-query>
     </entity>
@@ -153,6 +191,7 @@
                 WHERE id_clie = :pIdClie
             </query>
         </named-native-query>
+        
     </entity>
 
     <entity class="co.edu.icesi.viajes.domain.TipoDestino">

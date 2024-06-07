@@ -26,4 +26,13 @@ public interface PlanService extends GenericService<Plan, Integer>{
 
     List<PlanDTO> consultarPlanesYFechasYPersonasBusqueda(@Param("nombreDestino") String nombre, @Param("fechaInicioViaje") Date fechaInicio, @Param("fechaFinViaje") Date fechaFin, @Param("cantidadPersonas") Integer personas);
 
+    List<PlanDTO> consultarPotencialAsesores();
+
+    PlanDTO consultarTotalVentas();
+
+    PlanDTO consultarVentasReales();
+
+
+
+
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
@@ -44,4 +45,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     @Query(nativeQuery = true)
     List<ClienteDTO> consultarPlanYDetallePlan(@Param("pNombre") String nombre);
 
+    Optional<Cliente> findByNumeroIdentificacion(String numeroId);
 }

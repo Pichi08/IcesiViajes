@@ -42,6 +42,7 @@ import java.util.Date;
                         @ConstructorResult(
                                 targetClass = PlanDTO.class,
                                 columns = {
+                                        @ColumnResult(name = "idPlan", type = Integer.class),
                                         @ColumnResult(name = "nombre_plan", type = String.class),
                                         @ColumnResult(name = "nombre_destino", type = String.class),
                                         @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
@@ -60,6 +61,7 @@ import java.util.Date;
                         @ConstructorResult(
                                 targetClass = PlanDTO.class,
                                 columns = {
+                                        @ColumnResult(name = "idPlan", type = Integer.class),
                                         @ColumnResult(name = "nombre_plan", type = String.class),
                                         @ColumnResult(name = "nombre_destino", type = String.class),
                                         @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
@@ -78,6 +80,7 @@ import java.util.Date;
                         @ConstructorResult(
                                 targetClass = PlanDTO.class,
                                 columns = {
+                                        @ColumnResult(name = "idPlan", type = Integer.class),
                                         @ColumnResult(name = "nombre_plan", type = String.class),
                                         @ColumnResult(name = "nombre_destino", type = String.class),
                                         @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
@@ -96,6 +99,7 @@ import java.util.Date;
                         @ConstructorResult(
                                 targetClass = PlanDTO.class,
                                 columns = {
+                                        @ColumnResult(name = "idPlan", type = Integer.class),
                                         @ColumnResult(name = "nombre_plan", type = String.class),
                                         @ColumnResult(name = "nombre_destino", type = String.class),
                                         @ColumnResult(name = "fecha_inicio_viaje", type = Date.class),
@@ -107,6 +111,43 @@ import java.util.Date;
                         )
                 }
 
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarPotencialAsesores",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "usu_creador",type = String.class),
+                                        @ColumnResult(name = "cantidad_planes",type = Integer.class),
+                                        @ColumnResult(name = "potencial_ventas",type = Long.class),
+
+
+                                }
+                        )
+                }
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarTotalVentas",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "total_ventas",type = Long.class)
+                                }
+                        )
+                }
+        ),
+        @SqlResultSetMapping(
+                name = "Plan.consultarVentasReales",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = PlanDTO.class,
+                                columns = {
+                                        @ColumnResult(name = "total_ventas", type = Long.class)
+                                }
+                        )
+                }
         )
 
 })

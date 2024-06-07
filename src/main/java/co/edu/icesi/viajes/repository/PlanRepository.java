@@ -33,4 +33,13 @@ public interface PlanRepository extends JpaRepository<Plan, Integer> {
     @Query(nativeQuery = true)
     List<PlanDTO> consultarPlanesYFechasYPersonasBusqueda(@Param("nombreDestino") String nombre, @Param("fechaInicioViaje") Date fechaInicio, @Param("fechaFinViaje") Date fechaFin, @Param("cantidadPersonas") Integer personas);
 
+    @Query(nativeQuery = true)
+    List<PlanDTO> consultarPotencialAsesores();
+
+    @Query(nativeQuery = true)
+    PlanDTO consultarTotalVentas();
+
+    @Query(nativeQuery = true)
+    PlanDTO consultarVentasReales();
+
 }

@@ -36,6 +36,10 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     public Cliente save(Cliente entity) throws Exception {
+        Optional<Cliente> cliente = clienteRepository.findByNumeroIdentificacion(entity.getNumeroIdentificacion());
+        if (cliente.isPresent()){
+            throw new Exception("El número de identificación ya existe");
+        }
         return clienteRepository.save(entity);
     }
 
@@ -136,6 +140,11 @@ public class ClienteServiceImpl implements ClienteService{
     @Override
     public List<ClienteDTO> consultarPlanYDetallePlan(String nombre) {
         return clienteRepository.consultarPlanYDetallePlan(nombre);
+    }
+
+    @Override
+    public Optional<Cliente> findByNumeroIdentificacion(String numeroId) {
+        return clienteRepository.findByNumeroIdentificacion(numeroId);
     }
 
 

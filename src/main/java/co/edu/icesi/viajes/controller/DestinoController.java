@@ -21,7 +21,6 @@ public class DestinoController {
 
     @PostMapping("/crear")
     public ResponseEntity<?> crearDestino(@Valid @RequestBody Destino destino) throws Exception{
-        System.out.println("ENTRO A LA API");
         Destino destino1 = destinoService.save(destino);
         return ResponseEntity.ok(destino1);
     }
@@ -39,10 +38,15 @@ public class DestinoController {
 
     }
 
-
     @GetMapping("/consultarid/{id}")
     public ResponseEntity<?> buscarIdDestino(@Valid @PathVariable("id") Integer id) {
         Optional<Destino> destino = destinoService.findById(id);
         return ResponseEntity.ok(destino);
+    }
+
+    @GetMapping("/contar")
+    public ResponseEntity<?> contarDestinos(){
+        Long totalDestinos = destinoService.count();
+        return ResponseEntity.ok(totalDestinos);
     }
 }
